@@ -33,7 +33,18 @@ export default {
         id:1,
         url:"https://i.ytimg.com/vi/USAhS3TMi8w/maxresdefault.jpg",
         header: "Batmetal"
-      }
+      },
+      {
+        id:2,
+        url:"https://i.ytimg.com/vi/SwZDq49VxRs/maxresdefault.jpg",
+        header: "fobalicious"
+      },
+      {
+        id:3,
+        url:"https://media.giphy.com/media/XdfVLlRbc1ECk/giphy.gif",
+        header: "Tim"
+      },
+      
     ]
   }},
   methods:{
@@ -50,3 +61,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.currentSlide{
+    transform: scale(0.5);
+}
+</style>

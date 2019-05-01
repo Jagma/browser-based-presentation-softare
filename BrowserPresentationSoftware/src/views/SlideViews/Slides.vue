@@ -1,6 +1,9 @@
 <template>
-    <div class="slide"  v-shortkey="{up: ['arrowup'], down: ['arrowdown']}" @shortkey="theAction()">
-        <slide v-bind:currentSlide="currentSlide"></slide>
+    <div class="slide"
+         v-shortkey="{up: ['arrowup'], down: ['arrowdown'], left: ['arrowleft'], right:['arrowright']}" @shortkey="theAction">
+        <transition name="bounce">
+            <slide key="1" v-bind:currentSlide="currentSlide"></slide>
+        </transition>
     </div>
 </template>
 
@@ -24,18 +27,38 @@ export default {
                 id: this.slideShow[0].id,
                 url: this.slideShow[0].url,
                 header: this.slideShow[0].header,
+                endSlide: this.slideShow.length-1,
             }
     }},
     methods:{
         updateCurrentSlide(amount){
             this.slideNumber = this.slideNumber + amount;
+            if(this.slideNumber>this.slideShow.length-1)
+                this.slideNumber = this.slideShow.length-1;
+            if(this.slideNumber<0)
+                 this.slideNumber = 0;
             this.currentSlide.id= this.slideShow[this.slideNumber].id;
             this.currentSlide.url= this.slideShow[this.slideNumber].url;
             this.currentSlide.header= this.slideShow[this.slideNumber].header;
         },
          theAction(event){
-            this.updateCurrentSlide(1);
-        }
+             switch(event.srcKey){
+                 case 'left':
+                    this.updateCurrentSlide(-1);
+                    break;
+                case 'right':
+                    this.updateCurrentSlide(1);
+                    break;
+                case 'down':
+                    this.updateCurrentSlide(-2);
+                    break;
+                case 'up':
+                    this.updateCurrentSlide(2);
+                    break;
+             }
+           //console.log(event.srcKey);
+           // this.leave($$el(cSlide));
+        },
     }
 }
 </script>
@@ -43,5 +66,12 @@ export default {
 .slide{
     background-color: antiquewhite;
     fill: antiquewhite;
+}
+.bounce-enter-active, .bounce-leave-active {
+    transition: all 0.5s;
+}
+
+.bounce-enter, .bounce-leave-to { 
+    transform: scale(0);
 }
 </style>
