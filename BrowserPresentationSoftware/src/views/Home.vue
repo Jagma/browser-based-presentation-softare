@@ -1,10 +1,9 @@
 <template>
   <div class="home" id="home">
-    <div class="currentSlide">
-      <slides v-bind:slideShow="slideShow"></slides>
-    </div>
     <button type="button" @click="toggle">Fullscreen</button>
-   
+    <span class="currentSlide">
+      <slides v-bind:slideShow="slideShow"></slides>
+    </span>    
   </div>
 </template>
 
@@ -64,5 +63,6 @@ export default {
 <style scoped>
 .currentSlide{
     transform: scale(0.5);
+    display:grid;
 }
 </style>
