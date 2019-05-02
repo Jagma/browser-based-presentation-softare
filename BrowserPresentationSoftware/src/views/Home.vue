@@ -43,7 +43,11 @@ export default {
         url:"https://media.giphy.com/media/XdfVLlRbc1ECk/giphy.gif",
         header: "Tim"
       },
-      
+      {
+        id:4,
+        url: "http://www.strawpoll.me/embed_1/17921572",
+        header: "",
+      },
     ]
   }},
   methods:{
