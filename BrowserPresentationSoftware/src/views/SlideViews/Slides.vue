@@ -1,9 +1,7 @@
 <template>
     <div class="slide"
          v-shortkey="{up: ['arrowup'], down: ['arrowdown'], left: ['arrowleft'], right:['arrowright']}" @shortkey="theAction">
-        <transition name="bounce">
-            <slide key="1" v-bind:currentSlide="currentSlide"></slide>
-        </transition>
+        <slide key="1" v-bind:currentSlide="currentSlide"></slide>
     </div>
 </template>
 
@@ -64,14 +62,6 @@ export default {
 </script>
 <style scoped>
 .slide{
-    background-color: antiquewhite;
-    fill: antiquewhite;
-}
-.bounce-enter-active, .bounce-leave-active {
-    transition: all 0.5s;
-}
-
-.bounce-enter, .bounce-leave-to { 
-    transform: scale(0);
+    background-color: rgba(51,51,51,0.7);
 }
 </style>
