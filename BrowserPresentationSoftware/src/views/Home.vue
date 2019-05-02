@@ -62,7 +62,11 @@ export default {
 </script>
 <style scoped>
 .currentSlide{
-    transform: scale(0.5);
-    display:grid;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(51,51,51,0.7);
+    z-index: 10;
+    transform: scale(.5);
 }
 </style>
