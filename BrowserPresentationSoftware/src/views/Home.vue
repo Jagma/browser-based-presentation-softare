@@ -1,9 +1,9 @@
 <template>
   <div class="home" id="home">
     <button type="button" @click="toggle">Fullscreen</button>
-    <span class="currentSlide">
+    <div class="currentSlide">
       <slides v-bind:slideShow="slideShow"></slides>
-    </span>    
+    </div>    
   </div>
 </template>
 
