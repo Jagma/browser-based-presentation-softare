@@ -1,17 +1,50 @@
 <template>
+  <v-app app light>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/editor">Editor</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+      <v-toolbar class="toolbar" app>
+        <v-btn id="nav" fab @click="drawer = !drawer">≡</v-btn>
+        Some Slide Show Software Name
+      </v-toolbar>
+      <v-navigation-drawer v-model="drawer" absolute  dark temporary>
+        <v-divider></v-divider>
+        <v-list-tile>
+          <v-list-tile-content>
+            <router-link class="toolbar" to="/">Home</router-link> 
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile>
+          <v-list-tile-content>
+            <router-link to="/editor">Editor</router-link>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile>
+          <v-list-tile-content>
+            <router-link to="/about">About</router-link>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-navigation-drawer>
+      <router-view/>
   </div>
+  </v-app>
 </template>
 
 <script>
+import Vue from 'vue'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
+Vue.use(Vuetify)
+
 export default {
-  
+     data () {
+      return {
+        drawer: null,
+      }
+    },
+    methods:{
+      frick(){
+        return 1;
+      }
+    }
 }
 </script>
 
@@ -25,5 +58,12 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-
+#nav{
+  border: none;
+  size: 50%;
+}
+.toolbar{
+  font-size: 400;
+  
+}
 </style>

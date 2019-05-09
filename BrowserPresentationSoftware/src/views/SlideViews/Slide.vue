@@ -1,6 +1,6 @@
 <template>
     <div class="slide">
-        <div v-if="this.currentSlide.id==4">
+        <div v-if="this.currentSlide.id>=4">
             <iframe class="fram" :src=currentSlide.url>Loading Poll</iframe>
         </div>
         <div class="fram" v-else>
@@ -33,7 +33,7 @@ export default {
 </script>
 <style scoped>
 .slide{
-   background-color: rgba(51,51,51,0.7);
+   background-color: whitesmoke;
 }
 .fram{
     position: absolute;

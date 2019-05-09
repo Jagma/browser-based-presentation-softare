@@ -1,9 +1,9 @@
 <template>
   <div class="home" id="home">
-    <button type="button" @click="toggle">Fullscreen</button>
+    <v-btn outline color="indigo" type="button" class="btnfull" @click="toggle">Fullscreen</v-btn>
     <div class="currentSlide">
       <slides v-bind:slideShow="slideShow"></slides>
-    </div>    
+    </div> 
   </div>
 </template>
 
@@ -48,6 +48,16 @@ export default {
         url: "http://www.strawpoll.me/embed_1/17921572",
         header: "",
       },
+      {
+        id:5,
+        url: "https://write-box.appspot.com/",
+        header: "",
+      },
+      {
+        id:6,
+        url: "http://webserver-itrw324.herokuapp.com/",
+        header: "",
+      },
     ]
   }},
   methods:{
@@ -69,8 +79,13 @@ export default {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(51,51,51,0.7);
+    background: whitesmoke;
     z-index: 10;
     transform: scale(.5);
+}
+.btnfull .currentSlide::content{
+  position: relative;
+  bottom: 5%;
+  right: 10%;
 }
 </style>
