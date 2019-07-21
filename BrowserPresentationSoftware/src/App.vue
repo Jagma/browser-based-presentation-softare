@@ -5,7 +5,7 @@
         <v-btn id="nav" fab @click="drawer = !drawer">≡</v-btn>
         Some Slide Show Software Name
       </v-toolbar>
-      <v-navigation-drawer v-model="drawer" absolute  dark temporary>
+      <v-navigation-drawer v-model="drawer" absolute dark temporary>
         <v-divider></v-divider>
         <v-list-tile>
           <v-list-tile-content>
@@ -56,14 +56,16 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 10px;
 }
 #nav{
   border: none;
   size: 50%;
 }
 .toolbar{
-  font-size: 400;
-  
+  font-size: 400; 
+}
+html, body {
+  overflow: hidden;
 }
 </style>

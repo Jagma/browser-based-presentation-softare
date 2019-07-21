@@ -11,7 +11,7 @@ import Vue from 'vue'
 Vue.use(require('vue-shortkey'))
 export default {
   methods:{
-    theAction(event){
+    theAction(){
       window.alert("keys work")
     }
   }

@@ -4,9 +4,12 @@ import router from './router'
 import store from './store'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import './assets/style.css';
+import markdown from '@/directives/markdown';
 
 Vue.config.productionTip = false
 Vue.use(Vuetify)
+Vue.directive('markdown', markdown);
 
 new Vue({
   router,
