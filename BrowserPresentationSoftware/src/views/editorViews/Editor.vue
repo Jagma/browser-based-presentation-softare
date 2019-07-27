@@ -42,9 +42,8 @@
           </div>
         </div>
       </v-flex>
-     
       <v-flex xs6>   
-        <Preview :markdown=markdown />
+        <Preview :markdown=markdown :fullscreen=fullscreen />
       </v-flex>
     </v-layout>
     <EditorFooter @startPresentation="getIt"/>
@@ -94,7 +93,8 @@ export default {
       this.fullscreen = fullscreen
     },
     getIt(){
-      window.alert("ddd");
+      //window.alert("ddd");
+      this.toggle();
     }
   }
 };
