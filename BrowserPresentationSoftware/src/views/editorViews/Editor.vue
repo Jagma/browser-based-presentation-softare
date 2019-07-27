@@ -44,16 +44,7 @@
       </v-flex>
      
       <v-flex xs6>   
-        <div class="row mt-4">
-          <div class="col-md-6">
-            <h4 class="light">Preview</h4>
-            <div :key="markdown"
-              class="tex preview"
-              v-markdown
-              >{{markdown}}
-            </div>
-          </div>
-        </div>
+        <Preview :markdown=markdown />
       </v-flex>
     </v-layout>
     <EditorFooter @startPresentation="getIt"/>
@@ -65,13 +56,15 @@ import fullscreen from 'vue-fullscreen' //to make app fullscreen
 import Vue from 'vue'
 
 import EditorFooter from './EditorFooter'
+import Preview from './Preview'
 
 Vue.use(fullscreen)
 
 export default {
   name: "editor",
   components: {
-    EditorFooter
+    EditorFooter,
+    Preview
   },
   data() {
     return {
