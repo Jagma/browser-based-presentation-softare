@@ -71,7 +71,7 @@ export default {
     fullscreenChange (fullscreen) {
       this.fullscreen = fullscreen
     }
-  }
+  },
 }
 </script>
 <style scoped>

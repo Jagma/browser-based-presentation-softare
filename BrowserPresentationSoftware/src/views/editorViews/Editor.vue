@@ -42,8 +42,14 @@
           </div>
         </div>
       </v-flex>
-      <v-flex xs6>   
-        <Preview :markdown=markdown :fullscreen=fullscreen />
+      <v-flex xs6> 
+        <div class="row mt-4">
+        <div class="col-md-6">
+            <h4 class="light">Preview</h4>
+            <Preview class="tex" :markdown=markdown :fullscreen=fullscreen />
+        </div>
+    </div>  
+   
       </v-flex>
     </v-layout>
     <EditorFooter @startPresentation="getIt"/>
@@ -123,6 +129,7 @@ export default {
   width: 700px;
   background-color: rgba(255, 255, 255, 0.9);
 }
+
 .blockquote {
   display: block;
   margin-top: 1em;

@@ -7,6 +7,10 @@ import 'vuetify/dist/vuetify.min.css'
 import './assets/style.css';
 import markdown from '@/directives/markdown';
 
+import jQuery from 'jquery'
+global.jQuery = jQuery
+global.$ = jQuery
+
 Vue.config.productionTip = false
 Vue.use(Vuetify)
 Vue.directive('markdown', markdown);

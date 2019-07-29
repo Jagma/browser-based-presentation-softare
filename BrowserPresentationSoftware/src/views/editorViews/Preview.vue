@@ -1,16 +1,11 @@
 <template>
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <h4 class="light">Preview</h4>
-            <div :key="markdown"
-                class="tex preview"
-                v-markdown
-                :style="styling"
-                >{{markdown}}
-            </div>
-            <h1>{{availableHeight}} x {{availableWidth}} : {{contentHeight}} x {{contentWidth}}</h1>
-        </div>
-    </div>
+  <div>  
+  <div :key="markdown"
+            class="tex preview"
+            v-markdown
+  >{{markdown}}
+  </div>
+  </div>
 </template>
 
 <script>
@@ -24,14 +19,6 @@ export default {
           contentWidth : 0,
           scale: 1,
         };
-    },
-    computed: {
-      styling: function(){
-        return {
-           transform: `scale(`+this.scale+`)`,
-           'font-size': `270%`,
-        }
-      }
     },
     methods: {
       getContentHeight(){
@@ -50,18 +37,20 @@ export default {
         this.scale = Math.min( 
               this.availableWidth / this.contentWidth, 
               this.availableHeight / this.contentHeight );
+          if(this.fullscreen)
+            this.scale = 1;
        // this.scale = 500;
       },
       changeFullscreen(full){
         if(full===true){
           this.setContentHeight(this.availableHeight);
           this.setContentWidth(this.availableWidth);
-          this.setScale(2.7);
+          this.setScale();
         }
         else{
           this.setContentHeight(400);
           this.setContentWidth(700);
-          this.setScale(1);
+          this.setScale();
         }
       //  this.setScale();
       },
@@ -81,11 +70,10 @@ export default {
 </script>
 
 <style scoped>
-
 .container{
     background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
     font-family: 'Roboto', sans-serif;
-    height: 950px;
+    height: 100%;
     width: 100%; 
 }
 .light{
@@ -97,11 +85,9 @@ export default {
   border: 2px dashed orange;
   outline: none;
 }
-
 .tex{
-  height: 400px;
-  width: 700px;
   background-color: rgba(255, 255, 255, 0.9);
+  /*transform: scale(2.7);*/
 }
 .blockquote {
   display: block;
@@ -113,8 +99,5 @@ export default {
 #texTab {
   width: 700px;
 }
-.tempppp{
-  background-color: black;
-  width: 10px;
-}
+
 </style>

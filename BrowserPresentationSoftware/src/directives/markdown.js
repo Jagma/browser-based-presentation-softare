@@ -13,7 +13,7 @@ const rules = [
     //end region headers
 
     //Quoteblock
-    [/>{1}\s?([^\n]+)\n/g,'<blockquote class="blockquote">$1</blockquote>'],
+    [/>{1}\s?([^\n]+)\n/g,'<blockquote class="blockquote">$1</blockquote>'],//why do blockquouest show up in header 1?
 
     //Horizontal Line region
     [/\*{3}\n/g,'<hr class="horizontalLine">'],
