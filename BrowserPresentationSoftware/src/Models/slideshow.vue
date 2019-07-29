@@ -1,10 +1,14 @@
 <template>
-    <div></div>
+    <div v-shortkey="{left: ['arrowleft'], right:['arrowright']}" @shortkey="doStep" >
+    </div>
 </template>
 
 <script>
 //import {Options} from '../main.js'
 import slid from '!raw-loader!../slideshows/firstSlideShow/firstSlidshow.md'
+
+import Vue from 'vue'
+Vue.use(require('vue-shortkey'))
 
 export default {
     props: {
@@ -51,12 +55,34 @@ export default {
     },
     created(){
         this.slides = this.slideShowMarkdown.split('---');
+        /*need to update the nec data values*/
         this.$emit("change",this.slides[0]);
+        this.currentSlide =0;
     },
     methods: {
         getFirstSlide(){
         this.$emit("change",this.slides[0]);
-        }
+        },
+        nextSlide(i){//This needs to be changed to a slide object but will work for now
+            this.currentSlide += i;
+            if(this.currentSlide === this.slides.length-1){//-1 is to stop empty slide
+                this.currentSlide--;
+            }else if(this.currentSlide < 0){
+                this.currentSlide =0;
+            }
+          //  window.alert("chanign the slides");
+            this.$emit("change", this.slides[this.currentSlide]);
+        },
+        doStep(event){
+            switch(event.srcKey){
+                case 'left':
+                    this.nextSlide(-1);
+                    break;
+                case 'right':
+                    this.nextSlide(1);
+                    break;
+            }
+        },
        /* findSlides: function({resetIndex = true} = {}){
             var self = this;
             var i = 0; 

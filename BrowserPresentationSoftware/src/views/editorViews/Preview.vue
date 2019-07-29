@@ -4,6 +4,7 @@
   <div :key="markdown"
             class="tex preview"
             v-markdown
+            :fullscreen=fullscreen
   >{{markdown}}
   </div>
   </div>
@@ -11,6 +12,11 @@
 
 <script>
 import slideshow from '../../Models/slideshow';
+import fullscreen from 'vue-fullscreen' //to make app fullscreen
+import Vue from 'vue';
+
+Vue.use(fullscreen)
+
 
 export default {
     name: "preview",
@@ -24,10 +30,23 @@ export default {
           contentHeight : 0,
           contentWidth : 0,
           scale: 1,
-          mrkdwn: ''
+          mrkdwn: '',
+          full: false,
         };
     },
     methods: {
+      toggle(){
+   //   window.alert("happend");
+      this.$fullscreen.toggle(this.$el.querySelector('.preview'), {
+        wrap: false,
+        callback: this.fullscreenChange
+      })
+    },
+    fullscreenChange (fullscreen) {
+      this.fullscreen = fullscreen
+    },
+
+
       setMarkdown(mrk){
        
         this.mrkdwn = mrk
@@ -77,6 +96,9 @@ export default {
       fullscreen :  function (val) {
           this.changeFullscreen(val);
           this.setScale();
+          this.toggle();
+          
+       //   window.alert('catch');
       }
     },
     props: ['markdown','fullscreen'],

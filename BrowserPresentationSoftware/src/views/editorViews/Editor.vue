@@ -93,11 +93,12 @@ export default {
       this.phide = !this.phide;
     },
     toggle(){
+      this.fullscreenChange(true);
    //   window.alert("happend");
-      this.$fullscreen.toggle(this.$el.querySelector('.preview'), {
+      /*this.$fullscreen.toggle(this.$el.querySelector('.preview'), {
         wrap: false,
         callback: this.fullscreenChange
-      })
+      })*/
     },
     fullscreenChange (fullscreen) {
       this.fullscreen = fullscreen
