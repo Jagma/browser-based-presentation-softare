@@ -1,5 +1,6 @@
 <template>
-  <div>  
+  <div>
+  <slideshow @change="setMarkdown" ref="ccontrol"/>  
   <div :key="markdown"
             class="tex preview"
             v-markdown
@@ -9,8 +10,13 @@
 </template>
 
 <script>
+import slideshow from '../../Models/slideshow';
+
 export default {
     name: "preview",
+    components:{
+      slideshow
+    },
     data(){
         return {
           availableHeight : screen.height,
@@ -18,9 +24,15 @@ export default {
           contentHeight : 0,
           contentWidth : 0,
           scale: 1,
+          mrkdwn: ''
         };
     },
     methods: {
+      setMarkdown(mrk){
+       
+        this.mrkdwn = mrk
+        this.$emit("changeMarkdown", mrk);
+      },
       getContentHeight(){
         return this.$refs.infoBox.clientHeight;
       },
@@ -58,6 +70,8 @@ export default {
     created(){
       this.setContentHeight(400);
       this.setContentWidth(700);
+      //this.markdown = this.$refs.ccontrol;
+   //   this.markdown = this.slideshow.temp;
     },
     watch: {
       fullscreen :  function (val) {

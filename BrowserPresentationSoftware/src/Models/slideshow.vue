@@ -4,6 +4,7 @@
 
 <script>
 //import {Options} from '../main.js'
+import slid from '!raw-loader!../slideshows/firstSlideShow/firstSlidshow.md'
 
 export default {
     props: {
@@ -29,6 +30,8 @@ export default {
             slideTimer: 0,
             slides: [],
             active: true,
+            slideShowMarkdown: slid,
+            temp: "hello",
         }
     },
     computed: {
@@ -40,17 +43,21 @@ export default {
         //Lists all the slides
         this.isSlideshow = true;
        // var self = this;
-        this.findSlides();
+   //     this.findSlides();
 
         if(this.$root.direction === 'prev'){
             this.currentSlideIndex = this.slid
         }
     },
-
-
-
+    created(){
+        this.slides = this.slideShowMarkdown.split('---');
+        this.$emit("change",this.slides[0]);
+    },
     methods: {
-        findSlides: function({resetIndex = true} = {}){
+        getFirstSlide(){
+        this.$emit("change",this.slides[0]);
+        }
+       /* findSlides: function({resetIndex = true} = {}){
             var self = this;
             var i = 0; 
             self.slides = [];
@@ -78,7 +85,10 @@ export default {
                 self.currentSlide = self.currentSlide === null ? null : self.slides[0];
                 self.step = self.startStep;
             }
-        },
+        },*/
+    },
+    watch: {
+        
     },
 
 }

@@ -46,7 +46,7 @@
         <div class="row mt-4">
         <div class="col-md-6">
             <h4 class="light">Preview</h4>
-            <Preview class="tex" :markdown=markdown :fullscreen=fullscreen />
+            <Preview class="tex" :markdown=markdown :fullscreen=fullscreen @changeMarkdown="setText" />
         </div>
     </div>  
    
@@ -81,6 +81,10 @@ export default {
     };
   },
   methods:{
+    setText(txt){
+     //  window.alert("okl");
+      this.markdown = txt;
+    },
     next () {
         const active = parseInt(this.active)
         this.active = (active < 2 ? active + 1 : 0)

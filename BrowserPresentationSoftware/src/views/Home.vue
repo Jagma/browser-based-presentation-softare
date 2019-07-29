@@ -4,9 +4,7 @@
     <div class="currentSlide">
       <slides v-bind:slideShow="slideShow"></slides>
     </div>
-    <ul>
-      <li v-for="item in arr" :key="item"><textarea style="width= 600px; height= 200px" > {{item}}</textarea> </li>
-    </ul> 
+    
   </div>
 </template>
 
@@ -16,7 +14,11 @@ import fullscreen from 'vue-fullscreen' //to make app fullscreen
 import Vue from 'vue'
 import slides from '../views/SlideViews/Slides'
 import slid from '!raw-loader!../slideshows/firstSlideShow/firstSlidshow.md'
-
+/*
+<ul>
+      <-- li v-for="item in arr" :key="item"><textarea style="width= 600px; height= 200px" > {{item}}</textarea> </li>
+    </ul> 
+*/
 Vue.use(fullscreen)
 
 export default {
