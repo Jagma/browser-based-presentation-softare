@@ -3,7 +3,10 @@
     <v-btn outline color="indigo" type="button" class="btnfull" @click="toggle">Fullscreen</v-btn>
     <div class="currentSlide">
       <slides v-bind:slideShow="slideShow"></slides>
-    </div> 
+    </div>
+    <ul>
+      <li v-for="item in arr" :key="item"><textarea style="width= 600px; height= 200px" > {{item}}</textarea> </li>
+    </ul> 
   </div>
 </template>
 
@@ -12,6 +15,7 @@
 import fullscreen from 'vue-fullscreen' //to make app fullscreen
 import Vue from 'vue'
 import slides from '../views/SlideViews/Slides'
+import slid from '!raw-loader!../slideshows/firstSlideShow/firstSlidshow.md'
 
 Vue.use(fullscreen)
 
@@ -22,6 +26,8 @@ export default {
   },
   data: function(){return {
     fullscreen: false,
+    datad: slid,
+    arr: [],
     slideShow: [
       {
         id:0,
@@ -70,7 +76,11 @@ export default {
     },
     fullscreenChange (fullscreen) {
       this.fullscreen = fullscreen
-    }
+    },
+  },
+  created() {
+      this.arr= this.datad.split('---');
+      
   },
 }
 </script>
@@ -87,5 +97,8 @@ export default {
   position: relative;
   bottom: 5%;
   right: 10%;
+}
+#ff{
+  margin-top: 20%;
 }
 </style>
