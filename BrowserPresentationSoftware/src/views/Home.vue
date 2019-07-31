@@ -1,10 +1,24 @@
 <template>
   <div class="home" id="home">
     <v-btn outline color="indigo" type="button" class="btnfull" @click="toggle">Fullscreen</v-btn>
+<div v-katex:display="'\\textcolor{#228B22}{F=ma}'" class="math"></div>
+<div v-katex="'\\frac{a_i}{1+x}'"></div>
+   <textarea v-model="formula" cols="30" rows="10"></textarea>
+    <div v-highlight >
+    <pre class="language-javascript">
+  <code>
+    <button>export default {
+  name: 'home',
+  components: {
+    slides,
+  },</button>
+
+  </code>
+</pre>
+    </div>
     <div class="currentSlide">
       <slides v-bind:slideShow="slideShow"></slides>
     </div>
-    
   </div>
 </template>
 
@@ -14,12 +28,18 @@ import fullscreen from 'vue-fullscreen' //to make app fullscreen
 import Vue from 'vue'
 import slides from '../views/SlideViews/Slides'
 import slid from '!raw-loader!../slideshows/firstSlideShow/firstSlidshow.md'
+
+import VueKatex from 'vue-katex'
+import 'katex/dist/katex.min.css'
+
+
 /*
 <ul>
       <-- li v-for="item in arr" :key="item"><textarea style="width= 600px; height= 200px" > {{item}}</textarea> </li>
     </ul> 
 */
 Vue.use(fullscreen)
+Vue.use(VueKatex)
 
 export default {
   name: 'home',
@@ -30,6 +50,7 @@ export default {
     fullscreen: false,
     datad: slid,
     arr: [],
+    formula:  '<button>dfgtest</button> $$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$',
     slideShow: [
       {
         id:0,
@@ -101,6 +122,9 @@ export default {
   right: 10%;
 }
 #ff{
-  margin-top: 20%;
+  margin-top:90%;
+}
+.math{
+  font-size: 60px;
 }
 </style>

@@ -9,6 +9,16 @@ import slid from '!raw-loader!../slideshows/firstSlideShow/firstSlidshow.md'
 
 import Vue from 'vue'
 Vue.use(require('vue-shortkey'))
+import fullscreen from 'vue-fullscreen' //to make app fullscreen
+import VueKatex from 'vue-katex'
+import 'katex/dist/katex.min.css'
+
+
+
+Vue.use(fullscreen)
+Vue.use(VueKatex)
+
+
 
 export default {
     props: {

@@ -1,8 +1,20 @@
+import Vue from 'vue';
+import VueKatex from 'vue-katex'
+import 'katex/dist/katex.min.css';
 
+Vue.use(VueKatex)
 //Remember rules are implemented from top to bottom.
 //Thus rules should be desc. Otherwise it won't work
 
 const rules = [
+    //Quoteblock
+    [/>{1}\s?([^\n]+)\n/g,'<blockquote class="blockquote">$1</blockquote>'],//It is at the top because otherwise it picks up the html and changes the > to a blockquote
+
+    
+    //Region code
+    [/`{3}\s?([^\n]+)`{3}/g,'<pre class="language-javascript code"><code>$1</code></pre>'],
+    //End region code
+
     //region headers
     [/#{6}\s?([^\n]+)\n/g,'<h6 class="header6">$1</h6>'],
     [/#{5}\s?([^\n]+)\n/g,'<h5 class="header5">$1</h5>'],
@@ -12,9 +24,7 @@ const rules = [
     [/#{1}\s?([^\n]+)\n/g,'<h1 class="header1">$1</h1>'],
     //end region headers
 
-    //Quoteblock
-    [/>{1}\s?([^\n]+)\n/g,'<blockquote class="blockquote">$1</blockquote>'],//why do blockquouest show up in header 1?
-
+    
     //Horizontal Line region
     [/\*{3}\n/g,'<hr class="horizontalLine">'],
     [/-{3}\n/g,'<hr class="horizontalLine">'],
@@ -53,6 +63,8 @@ const rules = [
 
     //#Make Iframe with CSS to scale as ~[link][css]
     //#Math
+    [/\$\$([^*]+)\$\$/g,'<span v-katex="{ expression: \\frac{a_i}{1+x}, allowed-protocols=[*]"></span>    '], //Bold
+
     //#Code
   
     //#Escape characters
@@ -60,6 +72,7 @@ const rules = [
 ];
 
 export default {
+
     bind(el){
         let html = el.textContent;
         rules.forEach(([rule, template]) => {

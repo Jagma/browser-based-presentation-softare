@@ -1,3 +1,5 @@
+$$ii$$
+---
 # So this is a Slideshow
 ---
 > Honestly What can you do with this?
@@ -6,9 +8,7 @@
 ![img](https://myhouserabbit.com/wp-content/uploads/2014/05/coco2.jpg)
 ---
 Code?
-```
-var const: is this cool?
-```
+```var const: is this cool?```
 ---
 ## Math?
 ### Sure why not 

@@ -82,7 +82,7 @@ export default {
   },
   methods:{
     setText(txt){
-     //  window.alert("okl");
+     //  window.alert(txt);
       this.markdown = txt;
     },
     next () {
@@ -94,6 +94,7 @@ export default {
     },
     toggle(){
       this.fullscreenChange(true);
+      //window.alert("catch toggle");
    //   window.alert("happend");
       /*this.$fullscreen.toggle(this.$el.querySelector('.preview'), {
         wrap: false,

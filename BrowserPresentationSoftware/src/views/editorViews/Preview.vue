@@ -14,9 +14,13 @@
 import slideshow from '../../Models/slideshow';
 import fullscreen from 'vue-fullscreen' //to make app fullscreen
 import Vue from 'vue';
+import VueKatex from 'vue-katex'
+import 'katex/dist/katex.min.css'
+
+
 
 Vue.use(fullscreen)
-
+Vue.use(VueKatex)
 
 export default {
     name: "preview",
@@ -36,7 +40,7 @@ export default {
     },
     methods: {
       toggle(){
-   //   window.alert("happend");
+      //window.alert("happend");
       this.$fullscreen.toggle(this.$el.querySelector('.preview'), {
         wrap: false,
         callback: this.fullscreenChange
@@ -48,7 +52,7 @@ export default {
 
 
       setMarkdown(mrk){
-       
+        //window.alert(mrk);
         this.mrkdwn = mrk
         this.$emit("changeMarkdown", mrk);
       },
@@ -94,11 +98,15 @@ export default {
     },
     watch: {
       fullscreen :  function (val) {
+        
           this.changeFullscreen(val);
-          this.setScale();
+         // this.setScale();
           this.toggle();
-          
-       //   window.alert('catch');
+         // console.log("changed full");
+          //window.alert('catched');
+      },
+      markdown: function(){
+       // window.alert(this.markdown);
       }
     },
     props: ['markdown','fullscreen'],
