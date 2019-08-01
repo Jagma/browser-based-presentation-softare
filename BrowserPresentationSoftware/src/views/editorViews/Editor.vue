@@ -46,7 +46,7 @@
         <div class="row mt-4">
         <div class="col-md-6">
             <h4 class="light">Preview</h4>
-            <Preview class="tex" :markdown=markdown :fullscreen=fullscreen @changeMarkdown="setText" />
+            <Preview class="tex preview" :markdown=markdown :fullscreen=fullscreen @changeMarkdown="setText" />
         </div>
     </div>  
    
@@ -95,11 +95,11 @@ export default {
     toggle(){
       this.fullscreenChange(true);
       //window.alert("catch toggle");
-   //   window.alert("happend");
-      /*this.$fullscreen.toggle(this.$el.querySelector('.preview'), {
+   //  window.alert("happend");
+      this.$fullscreen.toggle(this.$el.querySelector('.preview'), {
         wrap: false,
         callback: this.fullscreenChange
-      })*/
+      })
     },
     fullscreenChange (fullscreen) {
       this.fullscreen = fullscreen

@@ -40,11 +40,11 @@ export default {
     },
     methods: {
       toggle(){
-      //window.alert("happend");
+      /*window.alert(this.fullscreen);
       this.$fullscreen.toggle(this.$el.querySelector('.preview'), {
         wrap: false,
         callback: this.fullscreenChange
-      })
+      })*/
     },
     fullscreenChange (fullscreen) {
       this.fullscreen = fullscreen
@@ -97,9 +97,9 @@ export default {
    //   this.markdown = this.slideshow.temp;
     },
     watch: {
-      fullscreen :  function (val) {
+      fullscreen :  function () {
         
-          this.changeFullscreen(val);
+         // this.changeFullscreen(val);
          // this.setScale();
           this.toggle();
          // console.log("changed full");

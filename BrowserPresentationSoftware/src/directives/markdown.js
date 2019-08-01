@@ -52,7 +52,8 @@ const rules = [
     [/!\[([^\]]+)\]\(([^)]+)\s"([^")]+)"\)/g,'<img src="$2" alt="$1" title="$3" class="image"/>'],//Images - format ![alternative link](source "caption")
     [/!\[([^\]]+)\]\(([^)]+)\)/g,'<img src="$2" alt="$1" class="image"/>'],//Images - format ![alternative link](source)
         
-    [/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="hyperlink">$1</a>'],//Links - format [Text](link)
+    //[/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="hyperlink">$1</a>'],//Links - format [Text](link)
+    [/\[([^\]]+)\]\(([^)]+)\)/g, '<iframe src="$2" class="iframe">$1</iframe>'],//Links - format [Text](link)
     
     [/([^\n]+\n)/g,'<p class="paragraph">$1</p>'],//New line will create new paragraph
 
@@ -63,10 +64,9 @@ const rules = [
 
     //#Make Iframe with CSS to scale as ~[link][css]
     //#Math
-    [/\$\$([^*]+)\$\$/g,'<span v-katex="{ expression: \\frac{a_i}{1+x}, allowed-protocols=[*]"></span>    '], //Bold
+    [/\$\$([^*]+)\$\$/g,'<span v-html="<b>$1</b>"></span>'], //Bold
 
     //#Code
-  
     //#Escape characters
     //End region
 ];

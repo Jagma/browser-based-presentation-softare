@@ -16,7 +16,7 @@ $$\sigma = x_2 + \sum u $$
 ---
 # All cool and that but what about embedding sites?
 ---
-[whoops my anarchy symbol](https://youtu.be/Ry5URU-Py2Q)
+[whoops my anarchy symbol](https://www.youtube.com/embed/Ry5URU-Py2Q)
 ---
 ## but yeah the regular stuff is there too I guess...
  - list
