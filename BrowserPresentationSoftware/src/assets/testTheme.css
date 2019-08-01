@@ -34,3 +34,11 @@ blockquote span{
   font-weight: bold;
   margin-top:1em;
 }
+
+.header1{ 
+  font-size: 20vh!important;
+}
+
+.list{
+  text-align: left;
+}
