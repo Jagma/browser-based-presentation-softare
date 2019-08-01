@@ -28,18 +28,19 @@ import fullscreen from 'vue-fullscreen' //to make app fullscreen
 import Vue from 'vue'
 import slides from '../views/SlideViews/Slides'
 import slid from '!raw-loader!../slideshows/firstSlideShow/firstSlidshow.md'
-
 import VueKatex from 'vue-katex'
 import 'katex/dist/katex.min.css'
-
 
 /*
 <ul>
       <-- li v-for="item in arr" :key="item"><textarea style="width= 600px; height= 200px" > {{item}}</textarea> </li>
     </ul> 
+        <video id="video" width="400" height="300" autoplay></video>
+
 */
 Vue.use(fullscreen)
 Vue.use(VueKatex)
+
 
 export default {
   name: 'home',
@@ -49,6 +50,7 @@ export default {
   data: function(){return {
     fullscreen: false,
     datad: slid,
+    photo: null,
     arr: [],
     formula:  '<button>dfgtest</button> $$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$',
     slideShow: [
@@ -90,6 +92,9 @@ export default {
     ]
   }},
   methods:{
+      take_photo () {
+            this.photo = this.$refs.webcam.getPhoto();
+        },
     toggle(){
    //   window.alert("happend");
       this.$fullscreen.toggle(this.$el.querySelector('.currentSlide'), {
@@ -105,9 +110,23 @@ export default {
       this.arr= this.datad.split('---');
       
   },
+  mounted() {
+    /*var video = document.getElementById('video');
+  //  venderUrl = window.URL || window.webkitURL;
+    navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    navigator.getMedia({
+      video:true,
+      audio:false
+    }, function(stream){
+      video.srcObject  = (stream);
+      video.play();
+    }, function(){
+      //
+    });*/
+  },
 }
 </script>
-<style scoped>
+<style>
 .currentSlide{
     position: fixed;
     width: 100%;
@@ -127,4 +146,23 @@ export default {
 .math{
   font-size: 60px;
 }
+
+ body {
+        background-color: #F0F0F0;
+    }
+    #app {
+        text-align: center;
+        color: #2c3e50;
+        margin-top: 60px;
+    }
+    #video {
+        background-color: #000000;
+    }
+    #canvas {
+        display: none;
+    }
+    li {
+        display: inline;
+        padding: 5px;
+    }
 </style>

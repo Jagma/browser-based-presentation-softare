@@ -44,7 +44,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
 .footer{
   margin-bottom: 10px;
 }

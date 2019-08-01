@@ -31,6 +31,7 @@
             <textarea 
               class="tex"
               v-model="markdown"
+              ref="markdownText"
             /> 
           </v-tab-item>
           <v-tab ripple>CSS</v-tab>
@@ -63,6 +64,7 @@ import Vue from 'vue'
 import EditorFooter from './EditorFooter'
 import Preview from './Preview'
 
+Vue.use(require('vue-shortkey'))
 Vue.use(fullscreen)
 
 export default {
@@ -81,6 +83,13 @@ export default {
     };
   },
   methods:{
+    up(event){
+            switch(event.srcKey){
+                  case 'up':
+                      this.$refs.markdownText.focus();
+                      break;
+        }
+    },
     setText(txt){
      //  window.alert(txt);
       this.markdown = txt;
@@ -113,7 +122,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
 .container{
     background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
     font-family: 'Roboto', sans-serif;

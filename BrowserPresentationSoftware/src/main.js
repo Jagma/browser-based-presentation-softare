@@ -26,6 +26,7 @@ Vue.use(VueCodeHighlight) //registers the v-highlight directive
 Vue.config.productionTip = false
 Vue.use(Vuetify)
 Vue.directive('markdown', markdown);
+Vue.config.ignoredElements = ['menuitem']
 
 
 

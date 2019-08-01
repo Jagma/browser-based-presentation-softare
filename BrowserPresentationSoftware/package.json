@@ -17,6 +17,7 @@
     "vue-katex": "^0.2.0",
     "vue-mathjax": "0.0.10",
     "vue-router": "^3.0.1",
+    "vue-webcam": "^2.0.4",
     "vuetify": "^1.5.14",
     "vuex": "^3.0.1"
   },
