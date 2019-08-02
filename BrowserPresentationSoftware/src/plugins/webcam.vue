@@ -38,7 +38,9 @@ export default {
         },
         stop(){
              var video = document.getElementById('video');
+             //video.pause();
              video.srcObject =null;
+             video = null;
         }
     },
     mounted() {

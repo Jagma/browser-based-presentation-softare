@@ -42,12 +42,13 @@
         </v-tabs>  
           </div>
         </div>
+        <v-btn @click="changeTheme">theme</v-btn>
       </v-flex>
       <v-flex xs6> 
         <div class="row mt-4">
         <div class="col-md-6">
             <h4 class="light">Preview</h4>
-            <Preview class="tex preview" :markdown=markdown :fullscreen=fullscreen @changeMarkdown="setText" />
+            <Preview class="tex preview" ref="preview" :markdown=markdown :fullscreen=fullscreen @changeMarkdown="setText" />
         </div>
     </div>  
    
@@ -63,7 +64,6 @@ import Vue from 'vue'
 
 import EditorFooter from './EditorFooter'
 import Preview from './Preview'
-
 Vue.use(require('vue-shortkey'))
 Vue.use(fullscreen)
 
@@ -83,6 +83,9 @@ export default {
     };
   },
   methods:{
+    changeTheme(){
+      this.$refs.preview.toggleTheme();
+    },
     up(event){
             switch(event.srcKey){
                   case 'up':

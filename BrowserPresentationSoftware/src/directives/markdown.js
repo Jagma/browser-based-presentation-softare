@@ -11,7 +11,7 @@ const rules = [
     [/>{1}\s?([^\n]+)\n/g,'<blockquote class="blockquote">$1</blockquote>'],//It is at the top because otherwise it picks up the html and changes the > to a blockquote
     
     //Region code
-    [/`{3}\s?(.*)`{3}/s, '<div v-highlight><pre class="language-javascript"><code>$1</code></pre></div>'],
+    [/`{3}\s?(.*)`{3}/s, '<div v-highlight class="code"><pre class="language-javascript code"><code>$1</code></pre></div>'],
    // [/`{3}\s?(.*)`{3}/s, '<vue-code-highlight>$1</vue-code-highlight>'],
     //End region code
 

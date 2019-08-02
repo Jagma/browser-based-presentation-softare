@@ -1,6 +1,7 @@
 body{
     font-family: 'Roboto', sans-serif;
     height: 2000px;
+    
 }
 
 .light{
@@ -17,17 +18,19 @@ blockquote {
 }
 
 iframe {
-   /* width: 102.5%;
-    height: 103.5%;
-    margin-top: -1%;
-    margin-left: -2%;*/
+    width: 100.5vw;
+    height: 56.7vw;
+    margin-top: -2.2%;
+    margin-left: -2.2%;
 }
 .header1{
     font-size: 20vh!important;
 }
 
 .code {
-    text-align: center;
+  align-self: center;
+  align-items: center;
+  align-self: auto;
 }
 
 
@@ -44,6 +47,7 @@ blockquote{
   line-height:1.6;
   position: relative;
   background:#EDEDED;
+  height: 10%;
 }
 
 blockquote::before{
@@ -66,10 +70,33 @@ blockquote span{
   font-style: normal;
   font-weight: bold;
   margin-top:1em;
-}
+}*/
 
 .header1{ 
   font-size: 20vh!important;
+  text-align: center;
+}
+
+.header2{
+  font-size: 10vh;
+  text-align: center;
+
+}
+
+.header3{
+  font-size: 8vh;
+}
+
+.header4{
+  font-size: 6vh;
+}
+
+.header5{
+  font-size: 4vh;
+}
+
+.header6{
+  font-size: 2vh;
 }
 
 .list{

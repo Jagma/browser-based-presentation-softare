@@ -35,10 +35,57 @@ blockquote span{
   margin-top:1em;
 }
 
-.header1{ 
-  font-size: 20vh!important;
+@import '../../assets/codeThemes/duotone-sea.css';
+/*
+@import '../../assets/tempt/copy-tex.min.css';
+*/
+
+.preview{
+    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #5e7c86 75%);
+    font-family: 'Roboto', sans-serif;
+    height: 90vw!important;
+    width: 100vw!important;
+  
+  /*  height: 90vh!important;
+    width: 1000vh!important; 
+    display: flex;*/
+    
+}
+/*
+.blockquote{
+  top: 20%!important;
+  left:20%!important;
+  width: 60%;
+  height: 200px;
+  font-size: 40px;
+  text-align: center;
+  vertical-align: middle;
+}
+*/
+.list{
+  font-size: 40px;
+  margin-left: 20%;
 }
 
-.list{
-  text-align: left;
+.light{
+    color: white;
+    text-shadow: 1px 1px 5px rgba(150, 150, 150, 0.9);
+}
+.textarea{
+  resize:both;
+  border: 2px dashed orange;
+  outline: none;
+}
+.tex{
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 100vh;
+  margin-left: -50%;
+  /*transform: scale(2.7);*/
+}
+.blockquote {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 40px;
+  margin-right: 40px;
 }

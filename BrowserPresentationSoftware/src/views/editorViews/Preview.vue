@@ -1,5 +1,5 @@
 <template>
-  <div  v-shortkey="{up: ['arrowup']}" @shortkey="up">
+  <div class="container" ref="preview"  v-shortkey="{up: ['home']}" @shortkey="up">
   <slideshow @change="setMarkdown" ref="ccontrol"/>  
   <div id="overlay" ref="overlay" v-shortkey="{overlay: ['end']}" @shortkey="overlay" >
       <webcam ref="webcam" :soverlay="showOverlay"/>
@@ -8,6 +8,7 @@
             class="tex preview"
             v-markdown
             :fullscreen=fullscreen
+            :style="theme"
   >{{markdown}}
   </div>
   <textarea 
@@ -26,6 +27,7 @@ import Vue from 'vue';
 import VueKatex from 'vue-katex'
 import 'katex/dist/katex.min.css'
 import webcam from '../../plugins/webcam';
+import theme1 from '!raw-loader!../../assets/testTheme.css'
 
 Vue.use(fullscreen)
 Vue.use(VueKatex)
@@ -47,26 +49,30 @@ export default {
           full: false,
           focusOnTex: false,
           showOverlay:false,
+          theme: null,
         };
     },
     methods: {
+      toggleTheme(){
+        if(this.theme==null) this.theme=theme1;
+        else this.theme=null;
+      },
         overlay(event){
           this.showOverlay = !this.showOverlay;
           this.$refs.webcam.toggleWebcam();
           //window.alert(this.overlay);
         },
-         up(event){
-            switch(event.srcKey){
-                  case 'up':
-                      this.focusOnTex = !this.focusOnTex;
-                      if(this.focusOnTex){
-                        this.$refs.markdownText.focus();
-                      } else{
-                        this.$refs.markdownText.blur();
-                    //    window.alert("dfdff");
-                      }
-                      break;
-        }
+         up(){
+          this.focusOnTex = !this.focusOnTex;
+          if(this.focusOnTex){
+            this.$refs.markdownText.focus();
+          } else{
+            this.$refs.preview.focus();
+            this.$refs.markdownText.blur();
+        //    window.alert("dfdff");
+          }
+          
+      
       },
       toggle(){
       /*window.alert(this.fullscreen);
@@ -149,40 +155,60 @@ export default {
     },
 }
 </script>
-<style>
+<style >
 @import '../../assets/codeThemes/duotone-sea.css';
-/*
-@import '../../assets/tempt/copy-tex.min.css';
-*/
 
-.container{
-    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic);
+blockquote{
+  font-size: 1.4em;
+  width:60%;
+  margin:50px auto;
+  font-family:Open Sans;
+  font-style:italic;
+  color: #555555;
+  padding:1.2em 30px 1.2em 75px;
+  border-left:8px solid #78C0A8 ;
+  line-height:1.6;
+  position: relative;
+  background:#EDEDED;
+}
+
+blockquote::before{
+  font-family:Arial;
+  content: "\201C";
+  color:#78C0A8;
+  font-size:4em;
+  position: absolute;
+  left: 10px;
+  top:-10px;
+}
+
+blockquote::after{
+  content: '';
+}
+
+blockquote span{
+  display:block;
+  color:#333333;
+  font-style: normal;
+  font-weight: bold;
+  margin-top:1em;
+}
+.preview{
+    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #5e7c86 75%);
     font-family: 'Roboto', sans-serif;
-    height: 100%;
-    width: 100%; 
+    height: 90vw!important;
+    width: 100vw!important;
+   /* margin-top: -2.2%;
+    margin-left: -1.3%;
+  /*  height: 90vh!important;
+    width: 1000vh!important; 
+    display: flex;*/
+    
 }
-.light{
-    color: white;
-    text-shadow: 1px 1px 5px rgba(150, 150, 150, 0.9);
-}
-.textarea{
-  resize: none;
-  border: 2px dashed orange;
-  outline: none;
-}
-.tex{
-  background-color: rgba(255, 255, 255, 0.9);
-  /*transform: scale(2.7);*/
-}
-.blockquote {
-  display: block;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  margin-left: 40px;
-  margin-right: 40px;
-}
-#texTab {
-  width: 700px;
+.list{
+  font-size: 40px;
+  margin-left: 20%;
 }
 #secretText {
       margin-top: 100%;
