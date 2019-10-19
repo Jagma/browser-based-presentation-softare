@@ -1,5 +1,10 @@
 <template>
   <div class="home" id="home">
+    
+    <textarea ref="ta" >sdfsdf</textarea>
+    <div class="typewriter">
+      <h1 >It's at:{{cur}}</h1>
+    </div>
     <v-btn outline color="indigo" type="button" class="btnfull" @click="toggle">Fullscreen</v-btn>
 <div v-katex:display="'\\textcolor{#228B22}{F=ma}'" class="math"></div>
 <div v-katex="'\\frac{a_i}{1+x}'"></div>
@@ -48,6 +53,7 @@ export default {
     slides,
   },
   data: function(){return {
+    cur:this.cursorPosition,
     fullscreen: false,
     datad: slid,
     photo: null,
@@ -111,18 +117,13 @@ export default {
       
   },
   mounted() {
-    /*var video = document.getElementById('video');
-  //  venderUrl = window.URL || window.webkitURL;
-    navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-    navigator.getMedia({
-      video:true,
-      audio:false
-    }, function(stream){
-      video.srcObject  = (stream);
-      video.play();
-    }, function(){
-      //
-    });*/
+    let textarea = this.$refs.ta
+    let cursorPosition = textarea.selectionStart
+    
+    this.$nextTick(() =>{
+      cursorPosition = textarea.selectionStart
+      this.cur = cursorPosition
+    });
   },
 }
 </script>
@@ -156,7 +157,7 @@ export default {
         margin-top: 60px;
     }
     #video {
-        background-color: #000000;
+      /*background-color: #000000;*/
     }
     #canvas {
         display: none;
@@ -165,4 +166,22 @@ export default {
         display: inline;
         padding: 5px;
     }
+.typewriter h1 {
+  font-family: monospace;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    blink-caret .5s infinite;
+}
+
+
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange }
+}
 </style>

@@ -28,5 +28,10 @@ export default new Router({
       name: 'temp',
       component: () => import('./temp/temp.vue')
     },
+    {
+      path: '/new',
+      name: 'new',
+      component: () => import('./views/newEd/main.vue')
+    },
   ]
 })

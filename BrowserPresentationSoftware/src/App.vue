@@ -1,10 +1,7 @@
 <template>
   <v-app app light>
   <div id="app">
-      <v-toolbar class="toolbar" app>
-        <v-btn id="nav" fab @click="drawer = !drawer">≡</v-btn>
-        Some Slide Show Software Name
-      </v-toolbar>
+      
       <v-navigation-drawer v-model="drawer" absolute dark temporary>
         <v-divider></v-divider>
         <v-list-tile>
@@ -66,6 +63,6 @@ export default {
   font-size: 400; 
 }
 html, body {
-  overflow: hidden;
+    overflow: hidden;
 }
 </style>
