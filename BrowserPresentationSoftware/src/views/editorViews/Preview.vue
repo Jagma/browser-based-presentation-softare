@@ -5,18 +5,18 @@
       <webcam ref="webcam" :soverlay="showOverlay"/>
   </div>
   <div :key="markdown"
-            class="tex preview"
+            class="preview"
             v-markdown
             :fullscreen=fullscreen
             :style="theme"
   >{{markdown}}
   </div>
-  <textarea 
+ <!-- <textarea 
               id="secretText"
               class="tex"
               v-model="markdown"
               ref="markdownText"
-            /> 
+            /> -->
   </div>
 </template>
 
@@ -194,17 +194,21 @@ blockquote span{
   font-weight: bold;
   margin-top:1em;
 }
+/*
 .preview{
     background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #5e7c86 75%);
-    font-family: 'Roboto', sans-serif;
-    height: 90vw!important;
-    width: 100vw!important;
-   /* margin-top: -2.2%;
-    margin-left: -1.3%;
-  /*  height: 90vh!important;
-    width: 1000vh!important; 
-    display: flex;*/
-    
+    font-family: 'Roboto'!important;
+    height: 5px!important;
+    width: 50px!important;
+    position: relative;
+}*/
+.header1{
+  margin-left: 0vw;
+  margin-top: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2px;
 }
 .list{
   font-size: 40px;

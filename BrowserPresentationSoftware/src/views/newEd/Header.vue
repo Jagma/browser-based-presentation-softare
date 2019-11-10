@@ -7,13 +7,13 @@
                         <v-btn flat v-on="on" >Menu</v-btn>
                     </template>
                     <v-list>
-                        <v-list-tile v-for="link in fileItems" :key="link.option">
+                        <v-list-tile v-for="link in fileItems" :key="link.option"  @click="menuClick(link)">
                             <v-list-tile-title>{{ link.option }}</v-list-tile-title>
                         </v-list-tile>
                     </v-list>
                 </v-menu>
                 </v-flex>
-
+                
 
                 <v-flex xs12 md1>
                     <v-menu offset-y>

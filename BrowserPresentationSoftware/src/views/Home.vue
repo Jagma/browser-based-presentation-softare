@@ -1,6 +1,6 @@
 <template>
   <div class="home" id="home">
-    
+    <TypingIndicator/>
     <textarea ref="ta" >sdfsdf</textarea>
     <div class="typewriter">
       <h1 >It's at:{{cur}}</h1>
@@ -35,7 +35,7 @@ import slides from '../views/SlideViews/Slides'
 import slid from '!raw-loader!../slideshows/firstSlideShow/firstSlidshow.md'
 import VueKatex from 'vue-katex'
 import 'katex/dist/katex.min.css'
-
+import TypingIndicator from '../components/typingIndicator'
 /*
 <ul>
       <-- li v-for="item in arr" :key="item"><textarea style="width= 600px; height= 200px" > {{item}}</textarea> </li>
@@ -51,6 +51,7 @@ export default {
   name: 'home',
   components: {
     slides,
+    TypingIndicator,
   },
   data: function(){return {
     cur:this.cursorPosition,

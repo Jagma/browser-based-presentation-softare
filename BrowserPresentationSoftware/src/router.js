@@ -33,5 +33,10 @@ export default new Router({
       name: 'new',
       component: () => import('./views/newEd/main.vue')
     },
+    {
+      path: '/indicator',
+      name: 'indicator',
+      component: () => import('./components/typingIndicator.vue')
+    }
   ]
 })
