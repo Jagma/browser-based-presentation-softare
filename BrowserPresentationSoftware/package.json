@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "hamr": "vue-cli-service serve"
   },
   "dependencies": {
     "FileReader": "^0.10.2",
@@ -14,9 +15,11 @@
     "katex": "^0.10.2",
     "vue": "^2.6.6",
     "vue-code-highlight": "^0.7.2",
-    "vue-katex": "^0.2.0",
+    "vue-fullscreen": "^2.1.5",
+    "vue-katex": "^0.2.1",
     "vue-mathjax": "0.0.10",
     "vue-router": "^3.0.1",
+    "vue-shortkey": "^3.1.7",
     "vue-webcam": "^2.0.4",
     "vuetify": "^1.5.14",
     "vuex": "^3.0.1"
