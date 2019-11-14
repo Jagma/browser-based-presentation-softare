@@ -1,5 +1,6 @@
 <template>
   <v-app app light>
+    
   <div id="app">
       
       <v-navigation-drawer v-model="drawer" absolute dark temporary>

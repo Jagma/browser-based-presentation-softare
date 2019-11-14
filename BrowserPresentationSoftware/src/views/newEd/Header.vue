@@ -65,6 +65,9 @@
                         <v-list-tile v-for="link in slideItems" :key="link.option"  @click="menuClick(link)">
                             <v-list-tile-title>{{ link.option }}</v-list-tile-title>
                         </v-list-tile>
+                        <v-list-tile>
+                            <Themes/> 
+                        </v-list-tile>
                     </v-list>
                 </v-menu>
                 </v-flex>
@@ -76,9 +79,16 @@
 <script>
 import Vue from 'vue'
 import Vuetify from 'vuetify'
-Vue.use(Vuetify);
-export default {
 
+import Themes from './Themes'
+
+//import html2canvas from 'html2canvas'
+Vue.use(Vuetify);
+import axios from 'axios';
+export default {
+    components:{
+        Themes
+    },
     data: () => ({
         fileItems: [
             { option: 'New' },
@@ -115,14 +125,34 @@ export default {
             { option: 'Delete slide' },
             { option: 'Skip slide' },
             { option: 'Change transition' },
-            { option: 'Change theme' },
         ],
+        info: "1",
   }),
   methods:{
       menuClick(link){
-          window.alert(link.option)
-      }
-  }
+          switch(link.option){
+              case "Copy":
+                  this.copySelection();
+                  break;
+              case "Change Theme":
+                  this.changeTheme();
+                  break;
+              default:
+                window.alert(link.option)
+          }
+      },
+      copySelection(){
+        try{
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccesful';
+            alert("Copied: "+ msg);
+        }catch (err){
+            alert('Oops, unable to copy');
+        }
+      },
+      getScreenshot(){
+      },
+  },
 }
 </script>
 

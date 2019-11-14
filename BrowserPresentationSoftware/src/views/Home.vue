@@ -1,26 +1,15 @@
 <template>
   <div class="home" id="home">
-    <TypingIndicator/>
-    <textarea ref="ta" >sdfsdf</textarea>
-    <div class="typewriter">
-      <h1 >It's at:{{cur}}</h1>
-    </div>
+   <!-- <main>
+       <Title msg="SVG Component"/>
+      <SVGImage SVGFile='logo-js.svg'/>
+    </main>
+    -->
+    <Scale/>
     <v-btn outline color="indigo" type="button" class="btnfull" @click="toggle">Fullscreen</v-btn>
 <div v-katex:display="'\\textcolor{#228B22}{F=ma}'" class="math"></div>
 <div v-katex="'\\frac{a_i}{1+x}'"></div>
    <textarea v-model="formula" cols="30" rows="10"></textarea>
-    <div v-highlight >
-    <pre class="language-javascript">
-  <code>
-    <button>export default {
-  name: 'home',
-  components: {
-    slides,
-  },</button>
-
-  </code>
-</pre>
-    </div>
     <div class="currentSlide">
       <slides v-bind:slideShow="slideShow"></slides>
     </div>
@@ -35,7 +24,9 @@ import slides from '../views/SlideViews/Slides'
 import slid from '!raw-loader!../slideshows/firstSlideShow/firstSlidshow.md'
 import VueKatex from 'vue-katex'
 import 'katex/dist/katex.min.css'
-import TypingIndicator from '../components/typingIndicator'
+import SVGImage from '../components/SVG-image'
+import Title from '../components/Title'
+import Scale from '../components/Scale'
 /*
 <ul>
       <-- li v-for="item in arr" :key="item"><textarea style="width= 600px; height= 200px" > {{item}}</textarea> </li>
@@ -51,7 +42,9 @@ export default {
   name: 'home',
   components: {
     slides,
-    TypingIndicator,
+    SVGImage,
+    Title,
+    Scale
   },
   data: function(){return {
     cur:this.cursorPosition,
@@ -184,5 +177,12 @@ export default {
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: orange }
+}
+
+main {
+  width: 60%;
+  margin: auto;
+  background-color: #E7E7E7;
+  padding:20px;
 }
 </style>

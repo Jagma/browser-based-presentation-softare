@@ -29,7 +29,6 @@ Vue.directive('markdown', markdown);
 Vue.config.ignoredElements = ['menuitem']
 
 
-
 const Options = {
   plugins: []
 }

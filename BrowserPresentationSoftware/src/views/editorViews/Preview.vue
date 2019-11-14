@@ -1,16 +1,17 @@
 <template>
   <div class="container" ref="preview"  v-shortkey="{up: ['home']}" @shortkey="up">
-  <slideshow @change="setMarkdown" ref="ccontrol"/>  
-  <div id="overlay" ref="overlay" v-shortkey="{overlay: ['end']}" @shortkey="overlay" >
-      <webcam ref="webcam" :soverlay="showOverlay"/>
-  </div>
-  <div :key="markdown"
-            class="preview"
-            v-markdown
-            :fullscreen=fullscreen
-            :style="theme"
-  >{{markdown}}
-  </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.css" integrity="sha384-exe4Ak6B0EoJI0ogGxjJ8rn+RN3ftPnEQrGwX59KTCl5ybGzvHGKjhPKk/KC3abb" crossorigin="anonymous">
+    <slideshow @change="setMarkdown" ref="ccontrol"/>  
+    <div id="overlay" ref="overlay" v-shortkey="{overlay: ['end']}" @shortkey="overlay" >
+        <webcam ref="webcam" :soverlay="showOverlay"/>
+    </div>
+    <div :key="markdown"
+              class="preview"
+              v-markdown
+              :fullscreen=fullscreen
+              :style="theme"
+    >{{markdown}}
+    </div>
  <!-- <textarea 
               id="secretText"
               class="tex"
@@ -31,6 +32,11 @@ import theme1 from '!raw-loader!../../assets/testTheme.css'
 
 Vue.use(fullscreen)
 Vue.use(VueKatex)
+
+import VueResizeText from 'vue-resize-text';
+ 
+Vue.use(VueResizeText)
+
 
 export default {
     name: "preview",
@@ -201,7 +207,7 @@ blockquote span{
     height: 5px!important;
     width: 50px!important;
     position: relative;
-}*/
+}
 .header1{
   margin-left: 0vw;
   margin-top: 20vh;
@@ -210,6 +216,7 @@ blockquote span{
   justify-content: center;
   font-size: 2px;
 }
+*/
 .list{
   font-size: 40px;
   margin-left: 20%;
@@ -228,4 +235,5 @@ blockquote span{
   bottom: 0;
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
 }
+
 </style>
