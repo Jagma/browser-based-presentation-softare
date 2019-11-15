@@ -1,5 +1,12 @@
 <template>
       <header>
+          <v-snackbar v-model="snackbar" :timeout="4000" top color="success">
+            <span>Project Created</span>
+            <v-btn flat color="white" @click="closeSnackbar">Close</v-btn>
+          </v-snackbar>
+          <v-snackbar v-model="projectExistsSnackbar" :timeout="2500" top color="error">
+            <span>Project Already Exists</span>
+          </v-snackbar>
           <v-layout row justify-start>
                 <v-flex xs12 md1>
                     <v-menu offset-y>
@@ -11,6 +18,7 @@
                             <v-list-tile-title>{{ link.option }}</v-list-tile-title>
                         </v-list-tile>
                     </v-list>
+                    <NewProject @projectCreated="newProjectCreated" @projectExists="projectAlreadyExistsError"/>
                 </v-menu>
                 </v-flex>
                 
@@ -80,6 +88,7 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 
+import NewProject from './NewProject'
 import Themes from './Themes'
 
 //import html2canvas from 'html2canvas'
@@ -87,7 +96,8 @@ Vue.use(Vuetify);
 import axios from 'axios';
 export default {
     components:{
-        Themes
+        Themes,
+        NewProject
     },
     data: () => ({
         fileItems: [
@@ -127,8 +137,20 @@ export default {
             { option: 'Change transition' },
         ],
         info: "1",
+        snackbar:false,
+        projectExistsSnackbar:false,
   }),
   methods:{
+      projectAlreadyExistsError(){
+          this.projectExistsSnackbar = true;
+      },
+      newProjectCreated(){
+          this.snackbar = true;
+      },
+      closeSnackbar(){
+          this.snackbar = false;
+          this.projectExistsSnackbar = false;
+      },
       menuClick(link){
           switch(link.option){
               case "Copy":

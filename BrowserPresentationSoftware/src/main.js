@@ -13,6 +13,7 @@ import '../node_modules/vue-code-highlight/themes/duotone-sea.css';
 import markdown from '@/directives/markdown';
 import slide from './Models/slide.vue';
 import slideShow from './Models/slideshow';
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 import jQuery from 'jquery'
 global.jQuery = jQuery

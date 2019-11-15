@@ -1,0 +1,11 @@
+{
+  "title": "Test Slide Show",
+  "subTitle": "TestSubTitle",
+  "author": "ME",
+  "audience": "Also me",
+  "organization": "SU",
+  "location": "Somewhere",
+  "date": "now",
+  "theme": "Stellenbosch",
+  "themeDirectory": "D:\\Development\\YEAR PROJECT\\a-browser-based-presentation-system\\BrowserPresentationSoftware\\src\\Stellenbosch.css"
+}

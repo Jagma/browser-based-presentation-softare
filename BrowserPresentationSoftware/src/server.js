@@ -7,6 +7,11 @@ var https = require('https');
 var app = express();
 const PORT = 8088;
 
+app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+
+app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -55,5 +60,17 @@ app.get('/getThemes', function(req, res){
 });
 
 
+app.post('/newProject', function(req, res){
+    try{
+        PROJECT_DIR = path.join(__dirname, 'slideshows');
+        fs.mkdirSync(path.join(PROJECT_DIR, req.body.title));
+        fs.writeFileSync("slideshows/"+req.body.title+"/"+req.body.title+".json", JSON.stringify( req.body,null,2))
+        fs.writeFileSync("slideshows/"+req.body.title+"/"+req.body.title+".md", "Hello Slideshow")
+        res.sendStatus(200)
+    } catch (e){
+        res.sendStatus(409)
+    }
+        
+ });
 
 app.listen(PORT);
