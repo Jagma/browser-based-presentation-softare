@@ -1,8 +1,9 @@
 
 :root {
-    --full-font-size: 40px;
+    --full-font-size: 30px;
     /*needs to find a way to detect screen size*/
-   /* --full-width: 1366px; */
+   /* --full-width: 1366px; was 30 */
+   --smaller-font-size: 15px;
 }
 
 .color { background-color: blue}
@@ -20,13 +21,13 @@
 }
 
 .fullscreen h1 {
-    color: gray;
-    margin-left: -4.4%;
-    font-size: calc(var(--full-font-size) + 1000%)!important;
-    background-color: aqua;
+    color: black;
+    margin-left: -10vw;
+    font-size: calc(var(--full-font-size) + 2em)!important;
+    /*font-size: calc(var(--full-font-size) + 150%)!important;
+    background-color: aqua;*/
     width: var(--full-width);
-    
-    
+    overflow: hidden;
 }
 
 .fullscreen a {
@@ -40,18 +41,77 @@
 
 .justPrev h1 {
     font-size: var(--full-font-size)!important;
-    color: white;
+    color: black;
+    margin-top: -3.5vh;
+    margin-left: -3vw;
 }
 
 .justPrev {
     display: flex;
     width: 96vw;
     height: 54vh!important;
-    background-color: blueviolet;
     overflow: hidden;
     background-size: contain;
     background-repeat: no-repeat;
     background-image: url('stellenboschBackground.png');
     background-position: center;
-    background-color:transparent;
 }
+
+.titlePage{
+    background-image: url('stellenboschTitlePage.png');
+}
+
+
+.pageNumber{
+    font-size: 10px!important;
+    margin-top: 54%;
+    margin-right: 10%;
+}
+
+.fullscreen .pageNumber {
+    margin-left: 37vw;
+    margin-top: 95vh;
+}
+
+.titlePage .pageNumber{
+    visibility: hidden;
+}
+
+.justPrev #title{
+    color:  #75263d;
+    margin-top: 20vh;
+    width: 38vw;
+    background-color: gold;
+    height: 10vh;
+    text-emphasis: bold;
+}
+
+.justPrev #subtitle{
+    color:  #75263d;
+    margin-top: -2vh;
+}
+
+.justPrev #author{
+    color:  black;
+    font-size: var(--smaller-font-size);
+    float: left;
+    margin-left: 6.5vw;
+    margin-top: 0.5vh;
+}
+
+.justPrev #audience{
+    color:  black;
+    font-size: var(--smaller-font-size);
+    float: left;
+    margin-left: 6.5vw;
+}
+
+.justPrev #date{
+    color:  black;
+    margin-left: 6.5vw;
+    font-size: var(--smaller-font-size);
+    float: left;
+    margin-left: -12.6vw;
+    margin-top: 3.9vh;
+}
+

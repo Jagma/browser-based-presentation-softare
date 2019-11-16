@@ -43,7 +43,6 @@ export default {
             return this.slides;
         },*/
         updateS() {
-            //window.alert("CLICKCED")
             this.splitSlides()
         }
     }

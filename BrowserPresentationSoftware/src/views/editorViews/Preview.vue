@@ -1,7 +1,9 @@
 <template>
   <div class="container" ref="preview"  v-shortkey="{up: ['home']}" @shortkey="up">
+    <!--<katex-element expression="'\\frac{a_i}{1+x}'"/>-->
+    <TitlePage v-if="currSlideNumber == 1" :projectJSON=jsonobj />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.css" integrity="sha384-exe4Ak6B0EoJI0ogGxjJ8rn+RN3ftPnEQrGwX59KTCl5ybGzvHGKjhPKk/KC3abb" crossorigin="anonymous">
-    <slideshow @change="setMarkdown" ref="ccontrol"/>  
+  <!--  <slideshow @change="setMarkdown" ref="ccontrol"/>  -->
     <div id="overlay" ref="overlay" v-shortkey="{overlay: ['end']}" @shortkey="overlay" >
         <webcam ref="webcam" :soverlay="showOverlay"/>
     </div>
@@ -12,6 +14,8 @@
               :style="theme"
     >{{markdown}}
     </div>
+    <h6 :class="pagenumberClasses" >{{currSlideNumber}}/{{totalPages}}</h6>
+    
  <!-- <textarea 
               id="secretText"
               class="tex"
@@ -22,14 +26,13 @@
 </template>
 
 <script>
-import slideshow from '../../Models/slideshow';
+//import slideshow from '../../Models/slideshow';
 import fullscreen from 'vue-fullscreen' //to make app fullscreen
 import Vue from 'vue';
 import VueKatex from 'vue-katex'
 import 'katex/dist/katex.min.css'
 import webcam from '../../plugins/webcam';
 import theme1 from '!raw-loader!../../assets/testTheme.css'
-
 Vue.use(fullscreen)
 Vue.use(VueKatex)
 
@@ -37,12 +40,13 @@ import VueResizeText from 'vue-resize-text';
  
 Vue.use(VueResizeText)
 
-
+import TitlePage from '../newEd/TitlePage'
+import tempJSON from '../../slideshows/firstSlideShow/firstSlidshow.json'
 export default {
     name: "preview",
     components:{
-      slideshow,
       webcam,
+      TitlePage,
     },
     data(){
         return {
@@ -56,6 +60,8 @@ export default {
           focusOnTex: false,
           showOverlay:false,
           theme: null,
+          test: false,
+          jsonobj: tempJSON,
         };
     },
     methods: {
@@ -63,7 +69,7 @@ export default {
         if(this.theme==null) this.theme=theme1;
         else this.theme=null;
       },
-        overlay(event){
+        overlay(/*event*/){
           this.showOverlay = !this.showOverlay;
           this.$refs.webcam.toggleWebcam();
           //window.alert(this.overlay);
@@ -76,9 +82,7 @@ export default {
             this.$refs.preview.focus();
             this.$refs.markdownText.blur();
         //    window.alert("dfdff");
-          }
-          
-      
+          }    
       },
       toggle(){
       /*window.alert(this.fullscreen);
@@ -90,8 +94,6 @@ export default {
     fullscreenChange (fullscreen) {
       this.fullscreen = fullscreen
     },
-
-
       setMarkdown(mrk){
         //window.alert(mrk);
         this.mrkdwn = mrk
@@ -139,23 +141,25 @@ export default {
     },
     watch: {
       fullscreen :  function () {
-        
-         // this.changeFullscreen(val);
-         // this.setScale();
           this.toggle();
-         // console.log("changed full");
-          //window.alert('catched');
       },
       markdown: function(){
        // window.alert(this.markdown);
       }
     },
-    props: ['markdown','fullscreen', 'options'],
+    computed: {
+      pagenumberClasses() {return {
+          pageNumber: this.showPageNumbers,
+          hideStuff: !this.showPageNumbers,
+        }
+      }
+    },
+    props: ['markdown','fullscreen', 'options', 'currSlideNumber', 'totalPages','showPageNumbers'],
     mounted() {
       this.$nextTick(() => {
           if(this.focusOnTex){
              this.$refs.markdownText.focus();
-          }
+          }  
         }
       );
     },
@@ -163,6 +167,7 @@ export default {
 </script>
 <style >
 @import '../../assets/codeThemes/duotone-sea.css';
+@import '../../Themes/Stellenbosch.css';
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic);
 blockquote{
@@ -200,23 +205,7 @@ blockquote span{
   font-weight: bold;
   margin-top:1em;
 }
-/*
-.preview{
-    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #5e7c86 75%);
-    font-family: 'Roboto'!important;
-    height: 5px!important;
-    width: 50px!important;
-    position: relative;
-}
-.header1{
-  margin-left: 0vw;
-  margin-top: 20vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2px;
-}
-*/
+
 .list{
   font-size: 40px;
   margin-left: 20%;
@@ -235,5 +224,10 @@ blockquote span{
   bottom: 0;
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
 }
+
+.hideStuff{
+  visibility: hidden;
+}
+
 
 </style>

@@ -64,7 +64,7 @@ const rules = [
 
     //#Make Iframe with CSS to scale as ~[link][css]
     //#Math
-    [/\$\$([^*]+)\$\$/g,'<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.css" integrity="sha384-exe4Ak6B0EoJI0ogGxjJ8rn+RN3ftPnEQrGwX59KTCl5ybGzvHGKjhPKk/KC3abb" crossorigin="anonymous"><div v-katex:display="\'\\frac{a_i}{1+x}\'"></div>'], //Bold
+    [/\$\$([^*]+)\$\$/g,`<katex-element expression="'1+x'"/>`], //Bold
 
     //#Code
     //#Escape characters

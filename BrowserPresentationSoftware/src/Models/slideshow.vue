@@ -5,8 +5,8 @@
 
 <script>
 //import {Options} from '../main.js'
-import slid from '!raw-loader!../slideshows/firstSlideShow/firstSlidshow.md'
-
+import slid from    '!raw-loader!../slideshows/firstSlideShow/firstSlidshow.md'
+import details from '../slideshows/firstSlideShow/firstSlidshow.json'
 import Vue from 'vue'
 Vue.use(require('vue-shortkey'))
 import fullscreen from 'vue-fullscreen' //to make app fullscreen
@@ -34,6 +34,7 @@ export default {
         skip: {default: false},
         backBySlide: {default: false},
         repeat: {default: false},
+        
     },
     data: function() {
         return {
@@ -46,6 +47,7 @@ export default {
             active: true,
             slideShowMarkdown: slid,
             temp: "hello",
+            fileDetails: details,
         }
     },
     computed: {
@@ -65,13 +67,16 @@ export default {
     },
     created(){
         this.slides = this.slideShowMarkdown.split('---');
+        this.slides.unshift('');
         /*need to update the nec data values*/
-        this.$emit("change",this.slides[0]);
         this.currentSlide =0;
+    
+        this.$emit("changeSlide", this.slides[this.currentSlide],this.currentSlide);
+        
     },
     methods: {
         getFirstSlide(){
-        this.$emit("change",this.slides[0]);
+            this.$emit("changeSlide", this.slides[this.currentSlide],this.currentSlide);
         },
         nextSlide(i){//This needs to be changed to a slide object but will work for now
             this.currentSlide += i;
@@ -80,8 +85,7 @@ export default {
             }else if(this.currentSlide < 0){
                 this.currentSlide =0;
             }
-          //  window.alert("chanign the slides");
-            this.$emit("change", this.slides[this.currentSlide]);
+            this.$emit("changeSlide", this.slides[this.currentSlide],this.currentSlide, this.slides.length);
         },
         doStep(event){
             switch(event.srcKey){
@@ -93,38 +97,6 @@ export default {
                     break;
             }
         },
-       /* findSlides: function({resetIndex = true} = {}){
-            var self = this;
-            var i = 0; 
-            self.slides = [];
-            this.$children.forEach(function(el){
-                if(el.isSlide){
-                    i++;
-                    if (( i>= self.firstSlide) && ((!self.lastSlide) || (i<self.lastSlide))){
-                        self.slides.push(el);//Adds slide to the stack
-                    }
-                }
-                else if(el.isSlideshow){
-                    el.active = false;
-                    el.slides.forEach(function(slide){
-                        i++; 
-                        slide.active = false;
-                        if((i>= self.firstSlide)  &&
-                            (!self.lastSlide || (i <= self.lastSlide))) {
-                            self.slides.push(slide)
-                        }
-                    })
-                }
-            })
-            if(resetIndex){
-                self.currentSlideIndex = 1;
-                self.currentSlide = self.currentSlide === null ? null : self.slides[0];
-                self.step = self.startStep;
-            }
-        },*/
-    },
-    watch: {
-        
     },
 
 }

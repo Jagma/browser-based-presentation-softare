@@ -1,18 +1,26 @@
 <template>
   <div class="editorView" ref="editorView">
-      <Header/>
+      <Header @newProjectCreated="newProjectedCreated" @openFile="openFile" @togglePageNumbers="togglePageNumbers"/>
       <SideMenu id="sideMenu"/>
-      <v-container class="editorContainer">
+      <SlideController @changeSlide="updateMarkdown"/>
+      <v-container class="editorContainer" fill-height >
             <v-layout row wrap align="end" justify="start">
                 <v-flex md6>
+                   <Toolbar/>
                    <textarea id="mdEditor" v-model="markdown" ref="markdownText"/> 
                   <!--  <img width="200px" height="200px" :src="output"> -->
                 </v-flex>
-                <v-flex md6>
-                    <Preview :class="previeClass" class="preview" ref="preview" :markdown=markdown :style="cssVars" /> 
-                   
+                <v-flex md6 align-center>
+                    <Preview :class="previeClass" class="preview" 
+                                ref="preview" 
+                                :markdown=markdown 
+                                :style="cssVars" 
+                                :showPageNumbers=showPageNumbers 
+                                :currSlideNumber=currentSlideNumber 
+                                :totalPages=totalSlides
+                    /> 
                 </v-flex>
-                <v-flex md1>
+                <v-flex md1 class="temp">
                     <v-btn @click="toggle">++</v-btn>
                      <v-btn @click="getScreenShot">check</v-btn>
                 </v-flex>
@@ -21,7 +29,6 @@
                 </v-flex>
             </v-layout>
       </v-container>
-   
   </div>
 </template>
 
@@ -36,18 +43,24 @@ import fullscreen from 'vue-fullscreen' //to make app fullscreen
 Vue.use(require('vue-shortkey'))
 Vue.use(fullscreen)
 
+//import tempMarkdown from '!raw-loader!../../slideshows/firstSlideShow/firstSlidshow.md'
 
 import Header from '../newEd/Header'
 import Preview from '../editorViews/Preview'
 import SideMenu from '../newEd/SideMenu'
 import SlideList from '../newEd/SlideList'
+import Toolbar from '../newEd/Toolbar'
 import 'katex/dist/katex.min.css';
 
+import SlideController from '../../Models/slideshow'
 //import slideShowMarkdownFile from "!raw-loader!../../slideshows/firstSlideShow/firstSlidshow.md"
 //import html2canvas from 'html2canvas'
 //import VueHtml2Canvas from 'vue-html2canvas';
 
 //Vue.use(VueHtml2Canvas);
+
+import TitlePage from '../../slideshows/firstSlideShow/firstSlidshow.json'
+
 
 import VueResizeText from 'vue-resize-text'
 Vue.use(VueResizeText)
@@ -57,7 +70,9 @@ export default {
         Header,
         Preview,
         SideMenu,
-        SlideList
+        SlideList,
+        Toolbar,
+        SlideController,
     },
     data() {
         return {
@@ -68,11 +83,34 @@ export default {
             color: true,
             screenWidth: null,
             screenHeight: null,
+            titlePage: false,
+            showPageNumbers: false,
+            currentSlideNumber: 0,
+            totalSlides: 0,
+            titlePageDetails: TitlePage,
         }
     },
     methods: {
+        updateMarkdown(newSlide, slideNumber, totalSlides){
+            this.markdown = newSlide;
+            if(slideNumber == 0)
+                this.titlePage = true;
+            else
+                this.titlePage = false;
+            this.currentSlideNumber = slideNumber+1;
+            this.totalSlides = totalSlides;
+        },
+        openFile(){
+            alert("opening...")
+        },
+        newProjectedCreated(){
+            /*const reader = new FileReader();
+            const projectfile = () => import('!raw-loader!../../slideshows/'+event+"/"+event+".json");
+            const file = "../../slideshows/"+event+"/"+event+".md"
+            reader.readAsText(projectfile, "UTF-8");*/
+        },
         getFirstSlide(){
-            this.markdown = ""
+            this.markdown =""// tempMarkdown
         },
         toggle(){
             this.fullscreenChange(true);
@@ -82,6 +120,9 @@ export default {
                 callback: this.fullscreenChange
             })
         },
+        togglePageNumbers(){
+            this.showPageNumbers = !this.showPageNumbers;
+        },
         fullscreenChange (fullscreen) {
             this.fullscreen = fullscreen
             this.screenWidth = window.screen.width;
@@ -89,8 +130,8 @@ export default {
         },
         getScreenShot(){
             //window.alert(this.$el.querySelector('.preview').clientWidth)
-            this.color = !this.color;
-            window.alert(this.screenWidth + ":"+this.screenHeight)
+            alert(this.options.pageNumber)
+           // window.alert(this.screenWidth + ":"+this.screenHeight)
             /*
             const el = this.$refs.preview;
             const options = {
@@ -119,7 +160,8 @@ export default {
         previeClass: function() {
             return {
                 fullscreen: this.fullscreen,
-                justPrev: !this.fullscreen
+                justPrev: !this.fullscreen,
+                titlePage: this.titlePage,
             }
         },
     }
@@ -133,9 +175,10 @@ export default {
 .preview{
     /*width: 90vh !important;
     height: 70vh !important;*/
-    width: 512px !important;
-    height: 288px ;
-
+    /*width: 640px !important;
+    height: 360px !important;*/
+    width: 40vw !important;
+    height: 40vw !important;
 }
 /*
 @media only screen and (min-width: 1600px) {
@@ -144,6 +187,7 @@ export default {
 */
 .editorView{
    /* overflow: hidden;*/
+   background-color: rgb(216, 216, 216);
 }
 
 .editorContainer{
@@ -153,11 +197,14 @@ export default {
     visibility: hidden;
 }
 #slideList{
-    
+    margin-top: 5%
 }
 #mdEditor{
-    width: 100%;
-    height: 100%;
-    background-color: beige;
+    width: 40vw;
+    height: 35vw;
+    background-color: whitesmoke;
+}
+.temp{
+    margin-top: 4.12%
 }
 </style>

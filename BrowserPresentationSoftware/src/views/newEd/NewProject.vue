@@ -1,7 +1,7 @@
 <template>
   <div>
       <v-dialog max-width="600px" v-model="dialog">
-          <v-btn flat slot="activator" class="success">New Slide Show</v-btn>
+          <v-btn slot="activator" class="success">New Slide Show</v-btn>
           <v-card class="mx-auto">
               <v-card-title>
                   <h2>New Slide Show</h2>
@@ -59,6 +59,7 @@ export default {
             v => v.length >= 1 || 'Title is required'
         ],
         dialog: false,
+        tempSwitch: false,
       }
     },
     methods:{
@@ -86,7 +87,8 @@ export default {
                 }
                 try{
                     const respon = await axios.post('http://localhost:8088/newProject',project,config);
-                    this.$emit('projectCreated')
+                    if(respon.status == 200){this.tempSwitch = !this.tempSwitch}
+                    this.$emit('projectCreated',this.title)
                     this.dialog = false;
                 }catch(e){
                     this.$emit("projectExists");

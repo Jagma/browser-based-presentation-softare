@@ -18,7 +18,7 @@
                             <v-list-tile-title>{{ link.option }}</v-list-tile-title>
                         </v-list-tile>
                     </v-list>
-                    <NewProject @projectCreated="newProjectCreated" @projectExists="projectAlreadyExistsError"/>
+                    <NewProject @projectCreated="newProjectCreated($event)" @projectExists="projectAlreadyExistsError"/>
                 </v-menu>
                 </v-flex>
                 
@@ -85,15 +85,11 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Vuetify from 'vuetify'
-
 import NewProject from './NewProject'
 import Themes from './Themes'
 
 //import html2canvas from 'html2canvas'
-Vue.use(Vuetify);
-import axios from 'axios';
+
 export default {
     components:{
         Themes,
@@ -127,7 +123,7 @@ export default {
             { option: 'Web view' },
             { option: 'Table' },
             { option: 'New slide' },
-            { option: 'Slide numbers' },
+            { option: 'Toggle Page Numbers' },
         ],
         slideItems: [
             { option: 'New slide' },
@@ -144,24 +140,37 @@ export default {
       projectAlreadyExistsError(){
           this.projectExistsSnackbar = true;
       },
-      newProjectCreated(){
+      newProjectCreated(event){
           this.snackbar = true;
+          this.$emit('newProjectCreated', event)
       },
       closeSnackbar(){
           this.snackbar = false;
           this.projectExistsSnackbar = false;
       },
       menuClick(link){
-          switch(link.option){
-              case "Copy":
-                  this.copySelection();
-                  break;
-              case "Change Theme":
-                  this.changeTheme();
-                  break;
-              default:
-                window.alert(link.option)
+            switch(link.option){
+                case "Open":
+                    this.openFile();
+                    break;
+                case "Copy":
+                    this.copySelection();
+                    break;
+                case 'Toggle Page Numbers':
+                    this.togglePageNumbers();
+                    break;
+                case "Change Theme":
+                    this.changeTheme();
+                    break;
+                default:
+                    window.alert(link.option)
           }
+      },
+      togglePageNumbers(){
+          this.$emit("togglePageNumbers")
+      },
+      openFile(){
+          this.$emit("openFile");
       },
       copySelection(){
         try{

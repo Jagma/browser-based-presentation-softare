@@ -28,5 +28,3 @@ $$\sigma = x_2 + \sum u $$
 [sun](https://www.google.com/webhp?igu=1)
 ---
 ## but yeah the regular stuff is there too I guess...
-
----
