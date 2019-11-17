@@ -1,23 +1,27 @@
 <template>
-  <div class="editorView" ref="editorView">
-      <Header @newProjectCreated="newProjectedCreated" @openFile="openFile" @togglePageNumbers="togglePageNumbers"/>
+  <div class="editorView" ref="editorView"  v-shortkey= "['home']" @shortkey="goToFirstSlide">
+      <div v-shortkey= "['end']" @shortkey="goToLastSlide"></div>
+      <div v-shortkey= "['f11']" @shortkey="toggle"></div>
+      <div v-shortkey= "['alt','arrowup']" @shortkey="hideHeader"></div>
+      <Header v-if="this.showHeader" @newProjectCreated="newProjectedCreated" @openFile="openFile" @togglePageNumbers="togglePageNumbers" @newTheme="changeTheme" />
       <SideMenu id="sideMenu"/>
-      <SlideController @changeSlide="updateMarkdown"/>
+      <SlideController @changeSlide="updateMarkdown" ref="slideController" :currentMarkdown=markdown />
       <v-container class="editorContainer" fill-height >
             <v-layout row wrap align="end" justify="start">
                 <v-flex md6>
-                   <Toolbar/>
+                   <Toolbar @bold="boldText" @italic="italicText" @strike="strikeText" @newSlide="newSlide" @clearAll="clearText" />
                    <textarea id="mdEditor" v-model="markdown" ref="markdownText"/> 
                   <!--  <img width="200px" height="200px" :src="output"> -->
                 </v-flex>
                 <v-flex md6 align-center>
-                    <Preview :class="previeClass" class="preview" 
+                    <Preview :class="previeClass" class="preview" id="preview"
                                 ref="preview" 
                                 :markdown=markdown 
                                 :style="cssVars" 
                                 :showPageNumbers=showPageNumbers 
                                 :currSlideNumber=currentSlideNumber 
                                 :totalPages=totalSlides
+                                :themeDirectory=themeDirectory
                     /> 
                 </v-flex>
                 <v-flex md1 class="temp">
@@ -51,6 +55,8 @@ import SideMenu from '../newEd/SideMenu'
 import SlideList from '../newEd/SlideList'
 import Toolbar from '../newEd/Toolbar'
 import 'katex/dist/katex.min.css';
+import jspdf from 'jspdf'
+import html2canvas from 'html2canvas'
 
 import SlideController from '../../Models/slideshow'
 //import slideShowMarkdownFile from "!raw-loader!../../slideshows/firstSlideShow/firstSlidshow.md"
@@ -83,14 +89,74 @@ export default {
             color: true,
             screenWidth: null,
             screenHeight: null,
+            showHeader: true,
             titlePage: false,
-            showPageNumbers: false,
+            showPageNumbers: true,
             currentSlideNumber: 0,
             totalSlides: 0,
             titlePageDetails: TitlePage,
+            themeDirectory:"Stellebosch",
         }
     },
     methods: {
+        print(){
+            const fileName = "pdfpdf.pdf";
+            this.goToFirstSlide();
+            this.$refs.slideController.nextSlide(1);
+            let canvas = html2canvas(document.querySelector('#preview'),{scale: 2});
+            let pdf = new jspdf('l','pt','a4');
+            var i =0;
+            for(i=0; i<3; i++){
+                pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 150,-180,450,450);
+                pdf.addPage()
+                this.$refs.slideController.nextSlide(1);
+                canvas = html2canvas(document.querySelector('#preview'),{scale: 2});
+            }
+            pdf.addPage()
+            pdf.text(20, 20, 'Do you like that?')
+            pdf.save(fileName);
+            /*html2canvas(document.querySelector('#preview'),{scale: 2}).then(canvas =>{
+                let pdf = new jspdf('l','pt','a4');
+                var i =0;
+                for(i=0; i<10; i++){
+                    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 150,-180,450,450);
+                    pdf.addPage()
+                    this.$refs.slideController.nextSlide(1);
+                    this.$forceUpdate();
+                }
+                pdf.addPage()
+                pdf.text(20, 20, 'Do you like that?')
+                pdf.save(fileName);
+            });*/
+        },
+        hideHeader(){
+            this.showHeader = !this.showHeader;
+        },
+        boldText(){
+            this.markdown = this.markdown + "**Bold here**";
+        },
+        italicText(){
+            this.markdown = this.markdown + "*italic here*";
+        },
+        strikeText(){
+            this.markdown = this.markdown + "~~strike text~~";
+        },
+        newSlide(){
+            alert("new slide");
+        },
+        clearText(){
+            this.markdown = "";
+        },
+        changeTheme(themeDirectory){
+            this.themeDirectory = themeDirectory
+            this.$refs.preview.setTheme();
+        },
+        goToFirstSlide(){
+            this.$refs.slideController.nextSlide(Number.MIN_SAFE_INTEGER);
+        },
+        goToLastSlide(){
+            this.$refs.slideController.nextSlide(Number.MAX_SAFE_INTEGER);
+        },
         updateMarkdown(newSlide, slideNumber, totalSlides){
             this.markdown = newSlide;
             if(slideNumber == 0)
@@ -130,17 +196,8 @@ export default {
         },
         getScreenShot(){
             //window.alert(this.$el.querySelector('.preview').clientWidth)
-            alert(this.options.pageNumber)
-           // window.alert(this.screenWidth + ":"+this.screenHeight)
-            /*
-            const el = this.$refs.preview;
-            const options = {
-                type : 'dataURL'
-            }
-              
-            this.output = await this.$html2canvas(el, options);
-            saveAs(this.output, 'test.jpg')
-            window.alert("Done")*/
+            this.print()
+            //alert(this.options.pageNumber)
         }
 
     },
@@ -169,16 +226,17 @@ export default {
 </script>
 
 <style lang="scss">
-
-@import '../../Themes/Stellenbosch.css';
+/*
+@import '../../Themes/Stellenbosch.css';*/
 
 .preview{
     /*width: 90vh !important;
     height: 70vh !important;*/
     /*width: 640px !important;
     height: 360px !important;*/
-    width: 40vw !important;
-    height: 40vw !important;
+    width: 650px !important;
+    height: 650px !important;
+    margin-top: -1vh;
 }
 /*
 @media only screen and (min-width: 1600px) {
@@ -188,6 +246,7 @@ export default {
 .editorView{
    /* overflow: hidden;*/
    background-color: rgb(216, 216, 216);
+   color: black;
 }
 
 .editorContainer{
@@ -201,7 +260,7 @@ export default {
 }
 #mdEditor{
     width: 40vw;
-    height: 35vw;
+    height: 20vw;
     background-color: whitesmoke;
 }
 .temp{

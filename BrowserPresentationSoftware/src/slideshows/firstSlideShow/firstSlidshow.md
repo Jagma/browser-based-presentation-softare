@@ -25,6 +25,6 @@ $$\sigma = x_2 + \sum u $$
 ---
 [whoops my anarchy symbol](https://www.youtube.com/embed/Ry5URU-Py2Q?autoplay=0&showinfo=0&controls=0)
 ---
-[sun](https://www.google.com/webhp?igu=1)
+[sun] ===( https://www.google.com/webhp?igu=1)
 ---
 ## but yeah the regular stuff is there too I guess...

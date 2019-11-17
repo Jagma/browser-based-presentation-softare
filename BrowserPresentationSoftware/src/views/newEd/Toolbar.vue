@@ -3,19 +3,19 @@
       <header>
           <v-layout row justify-center id="toolbar">
                 <v-flex xs12 md2>
-                  <v-btn class="toolbarButton"><v-icon>format_bold</v-icon></v-btn>
+                  <v-btn class="toolbarButton" @click="bold"><v-icon>format_bold</v-icon></v-btn>
                 </v-flex>
                 <v-flex xs12 md2>
-                  <v-btn><v-icon>format_italic</v-icon></v-btn>
+                  <v-btn @click="italic"><v-icon>format_italic</v-icon></v-btn>
                 </v-flex>
                 <v-flex xs12 md2>
-                  <v-btn><v-icon>strikethrough_s</v-icon></v-btn>
+                  <v-btn @click="strike"><v-icon>strikethrough_s</v-icon></v-btn>
                 </v-flex>
                 <v-flex xs12 md2>
-                  <v-btn><v-icon>title</v-icon></v-btn>
+                  <v-btn @click="newSlide"><v-icon>fiber_new</v-icon></v-btn>
                 </v-flex>
                 <v-flex xs12 md2>
-                  <v-btn><v-icon>clear_all</v-icon></v-btn>
+                  <v-btn @click="clearAll"><v-icon>clear_all</v-icon></v-btn>
                 </v-flex>
           </v-layout>
       </header>
@@ -24,7 +24,23 @@
 
 <script>
 export default {
-
+  methods:{
+    bold(){
+      this.$emit("bold");
+    },
+    italic(){
+      this.$emit("italic");
+    },
+    strike(){
+      this.$emit("strike");
+    },
+    newSlide(){
+      this.$emit("newSlide");
+    },
+    clearAll(){
+      this.$emit("clearAll");
+    },
+  }
 }
 </script>
 

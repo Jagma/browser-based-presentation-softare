@@ -22,8 +22,10 @@
 
 .fullscreen h1 {
     color: black;
-    margin-left: -10vw;
+    margin-left: -15vw;
+    margin-top: 15vh;
     font-size: calc(var(--full-font-size) + 2em)!important;
+  
     /*font-size: calc(var(--full-font-size) + 150%)!important;
     background-color: aqua;*/
     width: var(--full-width);
@@ -42,7 +44,7 @@
 .justPrev h1 {
     font-size: var(--full-font-size)!important;
     color: black;
-    margin-top: -3.5vh;
+    margin-top: 19vh;
     margin-left: -3vw;
 }
 
@@ -64,12 +66,12 @@
 
 .pageNumber{
     font-size: 10px!important;
-    margin-top: 54%;
-    margin-right: 10%;
+    margin-top: 75%;
+    margin-right: -25%;
 }
 
 .fullscreen .pageNumber {
-    margin-left: 37vw;
+    margin-left: 50vw;
     margin-top: 95vh;
 }
 
@@ -79,9 +81,9 @@
 
 .justPrev #title{
     color:  #75263d;
+    background: transparent;
     margin-top: 20vh;
     width: 38vw;
-    background-color: gold;
     height: 10vh;
     text-emphasis: bold;
 }
@@ -95,7 +97,7 @@
     color:  black;
     font-size: var(--smaller-font-size);
     float: left;
-    margin-left: 6.5vw;
+    margin-left: 0vw;
     margin-top: 0.5vh;
 }
 
@@ -103,7 +105,9 @@
     color:  black;
     font-size: var(--smaller-font-size);
     float: left;
-    margin-left: 6.5vw;
+    margin-top: 3.5vh;
+
+    margin-left: -9.1vw;
 }
 
 .justPrev #date{
@@ -111,7 +115,7 @@
     margin-left: 6.5vw;
     font-size: var(--smaller-font-size);
     float: left;
-    margin-left: -12.6vw;
-    margin-top: 3.9vh;
+    margin-left: -9.1vw;
+    margin-top: 6.2vh;
 }
 

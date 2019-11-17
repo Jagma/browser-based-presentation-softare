@@ -1,10 +1,11 @@
 <template>
-  <div class="container" ref="preview"  v-shortkey="{up: ['home']}" @shortkey="up">
+  <div class="container" ref="preview">
     <!--<katex-element expression="'\\frac{a_i}{1+x}'"/>-->
+    <div v-shortkey="{up: ['insert']}" @shortkey="liveEdit"></div>
     <TitlePage v-if="currSlideNumber == 1" :projectJSON=jsonobj />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.css" integrity="sha384-exe4Ak6B0EoJI0ogGxjJ8rn+RN3ftPnEQrGwX59KTCl5ybGzvHGKjhPKk/KC3abb" crossorigin="anonymous">
   <!--  <slideshow @change="setMarkdown" ref="ccontrol"/>  -->
-    <div id="overlay" ref="overlay" v-shortkey="{overlay: ['end']}" @shortkey="overlay" >
+    <div id="overlay" ref="overlay" v-shortkey="{overlay: ['scrolllock'], overlay: ['numlock']}" @shortkey="overlay" >
         <webcam ref="webcam" :soverlay="showOverlay"/>
     </div>
     <div :key="markdown"
@@ -15,13 +16,12 @@
     >{{markdown}}
     </div>
     <h6 :class="pagenumberClasses" >{{currSlideNumber}}/{{totalPages}}</h6>
-    
- <!-- <textarea 
+    <textarea 
               id="secretText"
               class="tex"
               v-model="markdown"
-              ref="markdownText"
-            /> -->
+              ref="secretText"
+            />
   </div>
 </template>
 
@@ -59,12 +59,15 @@ export default {
           full: false,
           focusOnTex: false,
           showOverlay:false,
-          theme: null,
           test: false,
           jsonobj: tempJSON,
+          theme: "Stellenbosch",
         };
     },
     methods: {
+      liveEdit(){
+            this.$refs.secretText.focus();
+        },
       toggleTheme(){
         if(this.theme==null) this.theme=theme1;
         else this.theme=null;
@@ -98,6 +101,15 @@ export default {
         //window.alert(mrk);
         this.mrkdwn = mrk
         this.$emit("changeMarkdown", mrk);
+      },
+      setTheme(){
+          this.theme= null;
+          if ('Stellenbosch' === this.themeDirectory)
+            this.theme = import('../../Themes/Stellenbosch.css');
+          else if (this.themeDirectory === 'DarkTheme')
+            this.theme = import('../../Themes/DarkTheme.css');
+          else if (this.themeDirectory === "PurpleTheme.css")
+            this.theme = import('../../Themes/PurpleTheme.css');
       },
       getContentHeight(){
         return this.$refs.infoBox.clientHeight;
@@ -136,6 +148,7 @@ export default {
     created(){
       this.setContentHeight(400);
       this.setContentWidth(700);
+      this.theme = import('../../Themes/Stellenbosch.css');
       //this.markdown = this.$refs.ccontrol;
    //   this.markdown = this.slideshow.temp;
     },
@@ -145,7 +158,7 @@ export default {
       },
       markdown: function(){
        // window.alert(this.markdown);
-      }
+      },
     },
     computed: {
       pagenumberClasses() {return {
@@ -154,8 +167,9 @@ export default {
         }
       }
     },
-    props: ['markdown','fullscreen', 'options', 'currSlideNumber', 'totalPages','showPageNumbers'],
+    props: ['markdown','fullscreen', 'options', 'currSlideNumber', 'totalPages','showPageNumbers', 'themeDirectory'],
     mounted() {
+      
       this.$nextTick(() => {
           if(this.focusOnTex){
              this.$refs.markdownText.focus();
@@ -166,8 +180,9 @@ export default {
 }
 </script>
 <style >
+
 @import '../../assets/codeThemes/duotone-sea.css';
-@import '../../Themes/Stellenbosch.css';
+/*@import '../../Themes/Stellenbosch.css';*/
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic);
 blockquote{
@@ -211,8 +226,7 @@ blockquote span{
   margin-left: 20%;
 }
 #secretText {
-      margin-top: 100%;
-      overflow-inline: inherit;
+    opacity: 0.0;
 }
 #overlay {
   position: fixed; /* Sit on top of the page content */ /* Hidden by default */
@@ -228,6 +242,4 @@ blockquote span{
 .hideStuff{
   visibility: hidden;
 }
-
-
 </style>

@@ -39,6 +39,24 @@ app.get('/g', function(req, res){
     })
 });
 
+app.get('/getProjects', function(req, res){
+    directoryPath = path.join(__dirname, 'slideshows');
+    slideshows = [];
+    fs.readdir(directoryPath, function (err, files){
+        if (err){
+            res.send("Error 404: Slideshow folder not found")
+        }
+        files.forEach(function (file){
+                temp = {
+                    directory: path.join(directoryPath,file),
+                    name: file
+                }
+                this.slideshows.push(temp);
+        });
+        res.send(slideshows);
+    })
+});
+
 app.get('/getThemes', function(req, res){
     directoryPath = path.join(__dirname, 'Themes');
     themes = [];

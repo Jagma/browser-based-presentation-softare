@@ -1,5 +1,7 @@
 <template>
     <div v-shortkey="{left: ['arrowleft'], right:['arrowright']}" @shortkey="doStep" >
+    <div v-shortkey= "['ctrl','d']" @shortkey="duplicateSlide"></div>
+    <div v-shortkey= "['ctrl','z']" @shortkey="saveFile"></div>
     </div>
 </template>
 
@@ -34,7 +36,7 @@ export default {
         skip: {default: false},
         backBySlide: {default: false},
         repeat: {default: false},
-        
+        currentMarkdown: {default: ""},
     },
     data: function() {
         return {
@@ -48,6 +50,7 @@ export default {
             slideShowMarkdown: slid,
             temp: "hello",
             fileDetails: details,
+            fileString: "",
         }
     },
     computed: {
@@ -75,13 +78,28 @@ export default {
         
     },
     methods: {
+        duplicateSlide(){
+            this.slides.splice(this.currentSlide,0,this.slides[this.currentSlide]);
+            alert(this.currentSlide)
+        },
+        saveFile(){
+            this.fileString = "ok";
+            var i;
+            for(i = 1; i<=this.slides.length; i++){
+                this.fileString = this.fileString.concat(this.slides[i])
+                this.fileString = this.fileString.concat("\n---\n");
+            }
+            alert(this.fileString)
+        },
         getFirstSlide(){
+            this.slides[this.currentSlide] = this.currentMarkdown;
             this.$emit("changeSlide", this.slides[this.currentSlide],this.currentSlide);
         },
         nextSlide(i){//This needs to be changed to a slide object but will work for now
+            this.slides[this.currentSlide] = this.currentMarkdown;
             this.currentSlide += i;
-            if(this.currentSlide === this.slides.length-1){//-1 is to stop empty slide
-                this.currentSlide--;
+            if(this.currentSlide > this.slides.length -1){//-1 is to stop empty slide
+                this.currentSlide = this.slides.length-1;
             }else if(this.currentSlide < 0){
                 this.currentSlide =0;
             }

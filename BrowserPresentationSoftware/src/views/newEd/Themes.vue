@@ -1,6 +1,6 @@
 <template>
   <div>
-      <v-dialog max-width="600px">
+      <v-dialog max-width="600px" v-model="dialog">
           <v-btn flat slot="activator" class="success">Change Theme</v-btn>
           <v-card>
               <v-card-title>
@@ -27,6 +27,8 @@ export default {
     data () {
       return {
         listOfThemes: null,
+        dialog: false,
+        count:0,
       }
     },
     methods:{
@@ -44,7 +46,8 @@ export default {
           this.listOfThemes = respon.data;
       },
       returnTheme(theme){
-          window.alert(theme.name)
+            this.$emit("newTheme", theme.name)
+            this.dialog = false;
       }
     },
     beforeMount(){

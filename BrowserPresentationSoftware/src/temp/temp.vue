@@ -17,7 +17,6 @@
 
 <script>
 
-import jQuery from 'jquery'
 export default {
     
     name:'temp',
@@ -33,37 +32,6 @@ export default {
     },
     mounted() {
         this.$nextTick(() => {
-            var $el = jQuery("#very-specific-design");
-            var elHeight = $el.outerHeight();
-            var elWidth = $el.outerWidth();
-
-            var $wrapper = jQuery("#scaleable-wrapper");
-            $el.css({
-                //transform: "translate(-50%, -50%) " + "scale()"
-                transform: "translate(-50%, 50%) scale(4)"
-            })
-           /* $wrapper.resizable({
-            resize: function() {window.alert('kek');}
-            });
-
-            function doResize(event, ui) {
-                    var scale;
-                    this.scale = Math.min(
-                        ui.size.width / this.elWidth,    
-                        ui.size.height / this.elHeight
-                    );
-                    this.$el.css({
-                        transform: "translate(-50%, -50%) " + "scale(" + scale + ")"
-                    });
-            }
-
-            var starterData = { 
-            size: {
-                    width: this.$wrapper.width(),
-                    height: this.$wrapper.height()
-                }
-            }
-            doResize(null, starterData);*/
         });
     },
 }

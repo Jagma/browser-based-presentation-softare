@@ -30,6 +30,6 @@ export default {
 </script>
 
 <style>
-@import '../../Themes/Stellenbosch.css';
-
+/*@import '../../Themes/Stellenbosch.css';
+*/
 </style>
