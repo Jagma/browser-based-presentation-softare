@@ -1,7 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const katex = require('katex');
+
 var fs = require('fs');
 const path = require('path');
+
+
 
 var https = require('https');
 var app = express();
@@ -22,6 +26,22 @@ app.use(function(req, res, next) {
 app.get('/', function(req, res){
     res.send("No one should see this.");
 });
+
+app.post('/math', function(req, res){
+   try
+   {
+        var html = katex.renderToString((req.body.expression),{//"c = \\pm\\sqrt{a^2 + b^2}", {
+            throwOnError: false,
+            displayMode: true,
+
+        });
+        console.log("Doing math on "+ req.body.expression);
+        res.send(html);
+    }catch(err){
+        console.log("error on "+ req.body.expression)
+    }
+});
+
 
 app.get('/g', function(req, res){
     directoryPath = path.join(__dirname, 'Themes');

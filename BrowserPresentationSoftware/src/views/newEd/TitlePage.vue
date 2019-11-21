@@ -1,12 +1,12 @@
 <template>
     <div>
-        <h1 v-if="title != null" id="title">{{title}}</h1>
-        <h2 v-if="subtitle != null" id="subtitle">{{subtitle}}</h2>
-        <h2 v-if="author != null" id="author">{{author}}</h2>
-        <h2 v-if="audience != null" id="audience">{{audience}}</h2>
-        <h2 v-if="organization != null" id="organization">{{organization}}</h2>
-        <h2 v-if="location != null" id="location">{{location}}</h2>
-        <h2 v-if="date != null" id="date">{{date}}</h2>
+        <p v-if="title != null" id="title">{{title}}</p>
+        <p v-if="subtitle != null" id="subtitle">{{subtitle}}</p>
+        <p v-if="author != null" id="author">{{author}}</p>
+        <p v-if="audience != null" id="audience">{{audience}}</p>
+        <p v-if="organization != null" id="organization">{{organization}}</p>
+        <p v-if="location != null" id="location">{{location}}</p>
+        <p v-if="date != null" id="date">{{date}}</p>
 
     </div>
 </template>

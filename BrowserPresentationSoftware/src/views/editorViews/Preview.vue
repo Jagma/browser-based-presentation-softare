@@ -1,5 +1,9 @@
 <template>
   <div class="container" ref="preview">
+    <head>
+<meta charset="utf-8"/>
+<link rel="stylesheet" type="text/css" href="./katex/katex.min.css">
+</head>
     <!--<katex-element expression="'\\frac{a_i}{1+x}'"/>-->
     <div v-shortkey="{up: ['insert']}" @shortkey="liveEdit"></div>
     <TitlePage v-if="currSlideNumber == 1" :projectJSON=jsonobj />
@@ -8,6 +12,7 @@
     <div id="overlay" ref="overlay" v-shortkey="{overlay: ['scrolllock'], overlay: ['numlock']}" @shortkey="overlay" >
         <webcam ref="webcam" :soverlay="showOverlay"/>
     </div>
+    <!--<p v-html="temp"></p>-->
     <div :key="markdown"
               class="preview"
               v-markdown
@@ -26,13 +31,16 @@
 </template>
 
 <script>
+
 //import slideshow from '../../Models/slideshow';
-import fullscreen from 'vue-fullscreen' //to make app fullscreen
+import fullscreen from 'vue-fullscreen' ;//to make app fullscreen
 import Vue from 'vue';
-import VueKatex from 'vue-katex'
-import 'katex/dist/katex.min.css'
+import VueKatex from 'vue-katex';
+import 'katex/dist/katex.min.css';
 import webcam from '../../plugins/webcam';
-import theme1 from '!raw-loader!../../assets/testTheme.css'
+import theme1 from '!raw-loader!../../assets/testTheme.css';
+import axios from 'axios';
+
 Vue.use(fullscreen)
 Vue.use(VueKatex)
 
@@ -62,9 +70,39 @@ export default {
           test: false,
           jsonobj: tempJSON,
           theme: "Stellenbosch",
+          temp: "",
         };
     },
     methods: {
+      async mathDirect(){
+          var str = this.markdown;
+          var result = str.match(/\$\$([^*]+)\$\$/g).map(function(val){
+            return val.replace(/[$]/g,'');
+          });
+         if(str.match(/\$\$([^*]+)\$\$/g)){
+            await this.getMath(`${result}`);
+            this.markdown = await this.markdown.replace(/\$\$([^*]+)\$\$/g, this.temp);
+         } 
+      },
+      async getMath(result){
+          let params = {
+            "expression": result
+          }
+          let config = {
+              async: true,
+              crossDomain: true,
+              url: "http://localhost:8088/math",
+              method: "GET",
+              headers: {
+                  "Content-Type": "application/json",
+              },
+              processData: false,
+          }
+          
+          const respon = await axios.post('http://localhost:8088/math',params, config);
+          this.temp = respon.data;
+          this.$forceUpdate();
+      },
       liveEdit(){
             this.$refs.secretText.focus();
         },
@@ -157,7 +195,9 @@ export default {
           this.toggle();
       },
       markdown: function(){
-       // window.alert(this.markdown);
+        this.$nextTick().then(()=>{
+            this.mathDirect();
+        });
       },
     },
     computed: {
@@ -169,17 +209,12 @@ export default {
     },
     props: ['markdown','fullscreen', 'options', 'currSlideNumber', 'totalPages','showPageNumbers', 'themeDirectory'],
     mounted() {
-      
-      this.$nextTick(() => {
-          if(this.focusOnTex){
-             this.$refs.markdownText.focus();
-          }  
-        }
-      );
+      this.mathDirect();
     },
 }
 </script>
 <style >
+@import "../../../node_modules/katex/dist/katex.min.css";
 
 @import '../../assets/codeThemes/duotone-sea.css';
 /*@import '../../Themes/Stellenbosch.css';*/

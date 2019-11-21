@@ -8,7 +8,7 @@ Vue.use(VueKatex)
 
 const rules = [
     //Quoteblock
-    [/>{1}\s?([^\n]+)\n/g,'<blockquote class="blockquote">$1</blockquote>'],//It is at the top because otherwise it picks up the html and changes the > to a blockquote
+    //[/>{1}\s?([^\n]+)\n/g,'<blockquote class="blockquote">$1</blockquote>'],//It is at the top because otherwise it picks up the html and changes the > to a blockquote
     
     //Region code
     [/`{3}\s?(.*)`{3}/s, '<div v-highlight class="code"><pre class="language-javascript code"><code>$1</code></pre></div>'],
@@ -64,7 +64,7 @@ const rules = [
 
     //#Make Iframe with CSS to scale as ~[link][css]
     //#Math
-    [/\$\$([^*]+)\$\$/g,`<katex-element expression="'1+x'"/>`], //Bold
+   // [/\$\$([^*]+)\$\$/g,`<katex-element  expression="'1+x'"/>`], //Bold
 
     //#Code
     //#Escape characters

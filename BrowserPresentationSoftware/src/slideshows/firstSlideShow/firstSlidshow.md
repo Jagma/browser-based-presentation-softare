@@ -1,30 +1,66 @@
-# So this is a Slideshow
+<h1 class="animated"> Overview </h1>
+<h2 class="animated"> Hamr is a browser-based presentation system that uses markdown to create slideshows.  </h2>
+ 
 ---
-> Honestly What can you do with this? <cite>author here</cite>
----
+# Hamr
+## What sets Hamr apart:
 
-## How about showing pictures? <br><br><br>
+* Markdown
+* Live editing 
+* Supports Live Math
+* Webviews 
 
-![img](https://media2.giphy.com/media/lGrxvmD7YazFS/source.gif)
 ---
-## Code?
-``` bind(el){
-        let html = el.textContent;
-        rules.forEach(([rule, template]) ={
-            html = html.replace(rule, template);
-        })
-        el.innerHTML = html;
-    }  
-```
+# Technology Used
+
+## The following technologies were used to create Hamr:
+
+* Vue.js
+* Vuetify
+* Markdown
+* Docker
+* Katex
+
+<img src="https://i.imgur.com/KcSq7SK.png" class="sideImage">
+
 ---
-## Math?
-### Sure why not 
-$$\sigma = x_2 + \sum u $$
+# Markdown Syntax
+
+## The markdown is sent to a regular expression engine which then converts the markdown into html components. Examples include:
+
 ---
-# All cool and that but what about embedding sites?
+# Custom components
+##### The system is built with extendibility in mind. As it supports the ability to add new components.
+
 ---
-[whoops my anarchy symbol](https://www.youtube.com/embed/Ry5URU-Py2Q?autoplay=0&showinfo=0&controls=0)
+# Math
+## Hamr natively supports the use of mathematical expressions
+$$x(n)y(n) \Leftrightarrow \frac{1}{{2\pi }}\int\limits_{ - \pi }^\pi  {X(e^{j\theta } )Y(e^{j(\omega  - \theta )} )d\theta }$$
+
 ---
-[sun] ===( https://www.google.com/webhp?igu=1)
+# Web views
+
+#### Web views is a gateway that enables user to make their presentations interactive without the need to switch between multiple tabs.
+
 ---
-## but yeah the regular stuff is there too I guess...
+~[https://www.youtube.com/embed/QpS-G6J_Jz8]
+
+---
+~[https://codepen.io/jcoulterdesign/pen/ZxXbeP]
+
+---
+# Testing
+
+## The following testing methodologies were used:
+
+* Unit Testing
+* E2E Testing
+* Monkey Testing
+* User Testing
+
+<img src="https://i.imgur.com/bRkwzWf.png" class="sideImage2">
+
+---
+# Conclusion 
+
+#### Thank You, Any Questions?
