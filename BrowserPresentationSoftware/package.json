@@ -7,6 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "hamr": "vue-cli-service serve",
+    "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
@@ -23,6 +24,7 @@
     "express": "^4.16.3",
     "finale-rest": "^1.0.6",
     "html2canvas": "^1.0.0-rc.5",
+    "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.4.1",
     "jspdf": "^1.5.3",
     "katex": "^0.10.2",
@@ -48,6 +50,7 @@
   "devDependencies": {
     "@mdi/font": "^4.5.95",
     "@vue/cli-plugin-babel": "^3.5.0",
+    "@vue/cli-plugin-e2e-cypress": "^4.0.5",
     "@vue/cli-plugin-eslint": "^3.5.0",
     "@vue/cli-plugin-unit-jest": "^4.0.5",
     "@vue/cli-service": "^3.5.0",

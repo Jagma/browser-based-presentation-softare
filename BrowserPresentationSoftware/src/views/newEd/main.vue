@@ -3,6 +3,7 @@
       <div v-shortkey= "['end']" @shortkey="goToLastSlide"></div>
       <div v-shortkey= "['f11']" @shortkey="toggle"></div>
       <div v-shortkey= "['alt','arrowup']" @shortkey="hideHeader"></div>
+      <div v-shortkey= "['ctrl','s']" @shortkey="newSlide"></div>
       <Header v-if="this.showHeader" @newProjectCreated="newProjectedCreated" @openFile="openFile" @togglePageNumbers="togglePageNumbers" @newTheme="changeTheme" />
       <SideMenu id="sideMenu"/>
       <SlideController @changeSlide="updateMarkdown" ref="slideController" :currentMarkdown=markdown />
@@ -100,6 +101,7 @@ export default {
     },
     methods: {
         print(){
+            alert("PRinting")
             const fileName = "pdfpdf.pdf";
             this.goToFirstSlide();
             this.$refs.slideController.nextSlide(1);
@@ -142,7 +144,10 @@ export default {
             this.markdown = this.markdown + "~~strike text~~";
         },
         newSlide(){
-            alert("new slide");
+            //alert("new slide");
+            this.$refs.slideController.insertNewSlide();
+            this.$refs.slideController.nextSlide(1);
+            this.markdown = ""
         },
         clearText(){
             this.markdown = "";

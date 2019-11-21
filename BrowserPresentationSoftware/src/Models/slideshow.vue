@@ -78,9 +78,11 @@ export default {
         
     },
     methods: {
+        insertNewSlide(){
+            this.slides.splice(this.currentSlide,0,'');
+        },
         duplicateSlide(){
             this.slides.splice(this.currentSlide,0,this.slides[this.currentSlide]);
-            alert(this.currentSlide)
         },
         saveFile(){
             this.fileString = "ok";

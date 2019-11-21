@@ -15,6 +15,13 @@
     animation: Slide_Up 0.5s ease;
 }
 
+#video{
+    z-index: 100;
+    margin-top: -90vh;
+    margin-left: -150vw;
+}
+
+
 .color { background-color: blue}
 
 .fullscreen{

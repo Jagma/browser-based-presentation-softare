@@ -4,6 +4,15 @@
     /*needs to find a way to detect screen size*/
    /* --full-width: 1366px; was 30 */
    --smaller-font-size: 15px;
+   --prev-big-font-size: 30px;
+   --full-big-font-size: 65px;
+   --full-medium-font-size: 40px;
+   --prev--medium-font-size: 20px;
+   /*--slide-animation: Slide_Up 0.5s ease;*/
+}
+
+.fullscreen .animated{
+    animation: Slide_Up 0.5s ease;
 }
 
 .color { background-color: blue}
@@ -15,24 +24,131 @@
     width: var(--full-width)!important;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('stellenboschBackground.png');
+    background-image: url('blackpic.jpg');
     background-position: center;
     background-color:transparent;
+    animation: var(--slide-animation);
+}
+
+@keyframes Slide_Up{
+    0% {
+        transform: translateY(1080px);
+    }
+    100%{
+        transform: translateY(0);
+    }
 }
 
 .fullscreen h1 {
-    color: black;
-    margin-left: -15vw;
-    margin-top: 15vh;
+    color: white;
+    margin-left: 20vw;
+    margin-top: 4.5vh;
     font-size: calc(var(--full-font-size) + 2em)!important;
-    /*font-size: calc(var(--full-font-size) + 150%)!important;
-    background-color: aqua;*/
-    width: var(--full-width);
+    float: left;
     overflow: hidden;
+    width: 900px;
+    text-align:left;
+    animation: var(--slide-animation);
 }
+
+.fullscreen h2 {
+    font-size: var(--full-big-font-size)!important;
+    color: white;
+    margin-top: 4vh;
+    vertical-align: middle;
+    float: left;
+    margin-left: 13.5vw;
+    align-self: center;
+    width: 1250px;
+    text-align: start;
+    animation: var(--slide-animation);
+}
+
+
+.fullscreen h3 {
+    font-size: var(--full-medium-font-size)!important;
+    color: white;
+    vertical-align: start;
+    float: left;
+    margin-left: 15vw;
+    align-self: center;
+    width: 1215px;
+    text-align: start;
+    margin-top: 1vh;
+    animation: var(--slide-animation);
+}
+
+
+
+.fullscreen h4 {
+    color: white;
+    margin-top: 30vh;
+    vertical-align: middle;
+    
+    font-size: calc(var(--full-font-size) + 2em)!important;
+    float: left;
+    overflow: hidden;
+    width: 1250px;
+    text-align:center;
+    margin-left: 15vw;
+    animation: var(--slide-animation);
+}
+
+.fullscreen h5 {
+    font-size: var(--full-big-font-size);
+    color: white;
+    margin-top: 23vh;
+    vertical-align: middle;
+    float: left;
+    margin-left: 15vw;
+    align-self: center;
+    text-align: center;
+    width: 1250px;
+    animation: var(--slide-animation);
+}
+
+
+.fullscreen .unorderedList{
+    font-size: var(--full-medium-font-size)!important;
+    float: left;
+    width: 500px;
+    margin-left: 13.5vw;
+    margin-top: 10px;
+    animation: var(--slide-animation);
+}
+
+
+.fullscreen .orderedList{
+    font-size: var(--full-medium-font-size)!important;
+    float: left;
+    width: 500px;
+    margin-left: 13.5vw;
+    margin-top: 10px;
+    animation: var(--slide-animation);
+    color: white;
+}
+
+
+.fullscreen .list{
+    font-size: var(--full-medium-font-size)!important;
+    animation: var(--slide-animation);
+}
+
+
+.fullscreen .katex-html{
+    font-size: 2.2em;
+    margin-top: 5vh!important;
+    width: 1920px;
+    align-content: center;
+    text-align: center;
+    animation: var(--slide-animation);
+}
+
+
 
 .fullscreen a {
     color: green!important;
+    animation: var(--slide-animation);
 }
 
 
@@ -40,12 +156,6 @@
    
 }
 
-.justPrev h1 {
-    font-size: var(--full-font-size)!important;
-    color: black;
-    margin-top: 19vh;
-    margin-left: -3vw;
-}
 
 .justPrev {
     display: flex;
@@ -54,19 +164,19 @@
     overflow: hidden;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('stellenboschBackground.png');
+    background-image: url('blackpic.jpg');
     background-position: center;
 }
 
 .titlePage{
-    background-image: url('stellenboschTitlePage.png');
+    background-image: url('blackpic.jpg');
 }
 
 
 .pageNumber{
     font-size: 10px!important;
-    margin-top: 87%;
-    margin-right: -2%;
+    margin-top: 75%;
+    margin-right: -25%;
 }
 
 .fullscreen .pageNumber {
@@ -78,13 +188,85 @@
     visibility: hidden;
 }
 
+.fullscreen #title{
+    color:  #75263d;
+    margin-left: -1vw;
+    margin-top: 35vh;
+    font-size: var(--full-big-font-size);
+    width: 1920px;
+
+}
+
+.fullscreen #author{
+    float: left;
+    margin-left: 15vw;
+    margin-top: 13vh;
+    font-size: var(--full-font-size);
+}
+
+.fullscreen #audience{
+    float: left;
+    margin-top: 19vh;
+    margin-left: -18.5vw;
+    font-size: var(--full-font-size);
+}
+
+.fullscreen #date{
+    float: left;
+    margin-top: 24.5vh;
+    margin-left: -18.5vw;
+    font-size: var(--full-font-size);
+}
+
+.fullscreen iframe{
+    width: 100.5vw;
+    height: 99.2vh;
+    margin-top: -0.2vh;
+    margin-left: -0.2vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index:99;
+}
+
+.fullscreen .sideImage{
+    height: 60vh;
+    margin-top: 27vh;
+    margin-left: -34vw;
+    z-index: 99;
+    position: fixed;
+    animation: var(--slide-animation);
+
+}
+
+
+.fullscreen .sideImage2{
+    height: 60vh;
+    margin-top: 27vh;
+    margin-left: -22.5vw;
+    z-index: 99;
+    position: fixed;
+    animation: var(--slide-animation);
+}
+
+
+
+
+
+/*preview details*/
+
+
 .justPrev #title{
-    color:  greenyellow;
-    background: purple;
-    margin-top: 20vh;
-    width: 38vw;
-    height: 10vh;
-    text-emphasis: bold;
+    color:  #75263d!important;
+    background: transparent!important;
+    margin-top: 20vh!important;
+    width: 38vw!important;
+    height: 10vh!important;
+    text-emphasis: bold!important;
+    float: left!important;
+    margin-left: 0vw!important;
+    width: 600px!important;
+    font-size: var(--prev-big-font-size);
 }
 
 .justPrev #subtitle{
@@ -93,7 +275,7 @@
 }
 
 .justPrev #author{
-    color:  black;
+    color:  white;
     font-size: var(--smaller-font-size);
     float: left;
     margin-left: 0vw;
@@ -101,7 +283,7 @@
 }
 
 .justPrev #audience{
-    color:  black;
+    color:  white;
     font-size: var(--smaller-font-size);
     float: left;
     margin-top: 3.5vh;
@@ -110,7 +292,7 @@
 }
 
 .justPrev #date{
-    color:  black;
+    color:  white;
     margin-left: 6.5vw;
     font-size: var(--smaller-font-size);
     float: left;
@@ -118,3 +300,133 @@
     margin-top: 6.2vh;
 }
 
+
+
+.justPrev h1 {
+    font-size: var(--full-font-size)!important;
+    color: white;
+    margin-top: 0vh;
+    float: left;
+    margin-left: 3vw;
+}
+
+.justPrev h2 {
+    font-size: var(--full-font-size)!important;
+    color: white;
+    margin-top: 4vh;
+    vertical-align: middle;
+    float: left;
+    margin-left: 0vw;
+    align-self: center;
+    width: 600px;
+    text-align: start;
+}
+
+.justPrev h3 {
+    font-size: var(--prev--medium-font-size)!important;
+    color: white;
+    vertical-align: start;
+    float: left;
+    margin-left: 0vw;
+    align-self: center;
+    width: 600px;
+    text-align: start;
+    margin-top: 1vh;
+}
+
+.justPrev p {
+    font-size: var(--prev--medium-font-size)!important;
+    vertical-align: start;
+    float: left;
+    margin-left: 0vw;
+    align-self: center;
+    width: 600px;
+    text-align: start;
+    margin-top: 1vh;
+    color: white;
+}
+
+
+.justPrev{
+    text-emphasis-color: white;
+}
+
+
+.justPrev h4 {
+    font-size: var(--full-font-size)!important;
+    color: white;
+    margin-top: 18vh;
+    vertical-align: middle;
+    float: left;
+    margin-left: 0vw;
+    align-self: center;
+    width: 600px;
+    text-align: center;
+}
+
+.justPrev h5 {
+    font-size: var(--full-font-size)!important;
+    color: white;
+    margin-top: 13vh;
+    vertical-align: middle;
+    float: left;
+    margin-left: 0vw;
+    align-self: center;
+    width: 600px;
+    text-align: center;
+}
+
+.justPrev .unorderedList{
+    font-size: var(--prev--medium-font-size)!important;
+    float: left;
+    width: 500px;
+    margin-left: -0vw;
+    margin-top: 5;
+    color: white;
+}
+
+.justPrev .orderedList{
+    font-size: var(--prev--medium-font-size)!important;
+    float: left;
+    width: 500px;
+    margin-left: -0vw;
+    margin-top: 5;
+    color: white;
+}
+
+
+.justPrev .list{
+    font-size: var(--prev--medium-font-size)!important;
+}
+
+.justPrev .expression{
+    font-size: 20px;
+}
+
+.justPrev iframe{
+    width: 600px;
+    height: 450px;
+}
+
+.justPrev .katex-html{
+    font-size: 1.2em;
+    margin-top: 5vh!important;
+    margin-left: 0vw;
+}
+
+.justPrev .sideImage{
+    height: 300px;
+    margin-top: 15vh;
+    margin-left: -9vw;
+    z-index: 99;
+    position: fixed;
+}
+
+
+.justPrev .sideImage2{
+    height: 300px;
+    margin-top: 15vh;
+    margin-left: 0vw;
+    z-index: 99;
+    position: fixed;
+}
