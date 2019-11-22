@@ -15,6 +15,13 @@
     animation: Slide_Up 0.5s ease;
 }
 
+#video{
+    z-index: 100;
+    margin-top: -90vh;
+    margin-left: -150vw;
+}
+
+
 .color { background-color: blue}
 
 .fullscreen{
@@ -125,7 +132,6 @@
     margin-left: 13.5vw;
     margin-top: 10px;
     animation: var(--slide-animation);
-    color: white;
 }
 
 
@@ -189,7 +195,7 @@
 }
 
 .fullscreen #title{
-    color:  #75263d;
+    color:  hsl(192, 98%, 45%);
     margin-left: -1vw;
     margin-top: 35vh;
     font-size: var(--full-big-font-size);
@@ -257,7 +263,7 @@
 
 
 .justPrev #title{
-    color:  #75263d!important;
+    color:  hsl(192, 98%, 45%)!important;
     background: transparent!important;
     margin-top: 20vh!important;
     width: 38vw!important;
@@ -270,7 +276,7 @@
 }
 
 .justPrev #subtitle{
-    color:  #75263d;
+    color:  hsl(192, 98%, 45%);
     margin-top: -2vh;
 }
 
@@ -334,8 +340,9 @@
     margin-top: 1vh;
 }
 
-.justPrev p {
+.justPrev body {
     font-size: var(--prev--medium-font-size)!important;
+    color: green;
     vertical-align: start;
     float: left;
     margin-left: 0vw;
@@ -343,13 +350,8 @@
     width: 600px;
     text-align: start;
     margin-top: 1vh;
-    color: white;
 }
 
-
-.justPrev{
-    text-emphasis-color: white;
-}
 
 
 .justPrev h4 {
@@ -382,7 +384,6 @@
     width: 500px;
     margin-left: -0vw;
     margin-top: 5;
-    color: white;
 }
 
 .justPrev .orderedList{
@@ -391,7 +392,6 @@
     width: 500px;
     margin-left: -0vw;
     margin-top: 5;
-    color: white;
 }
 
 

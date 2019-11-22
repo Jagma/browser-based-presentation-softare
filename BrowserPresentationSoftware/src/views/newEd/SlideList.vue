@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import slideShowMarkdownFile from "!raw-loader!../../slideshows/firstSlideShow/firstSlidshow.md"
+//import slideShowMarkdownFile from "!raw-loader!../../slideshows/firstSlideShow/firstSlidshow.md"
 
 /**
  * This shows the markdown as text and the amount of slides
@@ -22,7 +22,7 @@ export default {
         return {
             slides: [],
             temp: "tt -- pp",
-            slideShowMarkdown: slideShowMarkdownFile
+           // slideShowMarkdown: slideShowMarkdownFile
         }
     },
     computed:{
@@ -34,7 +34,7 @@ export default {
     },
     methods:{
         splitSlides() {
-            this.slides = this.slideShowMarkdown.split('---')
+          //  this.slides = this.slideShowMarkdown.split('---')
         },
         /*getSlides()  {
             if (this.slides.length == 0){

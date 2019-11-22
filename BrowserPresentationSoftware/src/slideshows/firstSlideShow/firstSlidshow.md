@@ -1,5 +1,5 @@
 <h1 class="animated"> Overview </h1>
-<h2 class="animated"> Hamr is a browser-based presentation system that uses markdown to create slideshows.  </h2>
+<h5 class="animated"> Hamr is a browser-based presentation system that uses markdown to create slideshows.  </h5>
  
 ---
 # Hamr
@@ -19,14 +19,14 @@
 * Vuetify
 * Markdown
 * Docker
-* Katex
+* KaTeX
 
 <img src="https://i.imgur.com/KcSq7SK.png" class="sideImage">
 
 ---
 # Markdown Syntax
 
-## The markdown is sent to a regular expression engine which then converts the markdown into html components. Examples include:
+## The markdown is sent to a regular expression engine which then converts the markdown into HTML components. Examples include:
 
 ---
 # Custom components

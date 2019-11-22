@@ -4,7 +4,12 @@
       <div v-shortkey= "['f11']" @shortkey="toggle"></div>
       <div v-shortkey= "['alt','arrowup']" @shortkey="hideHeader"></div>
       <div v-shortkey= "['ctrl','s']" @shortkey="newSlide"></div>
-      <Header v-if="this.showHeader" @newProjectCreated="newProjectedCreated" @openFile="openFile" @togglePageNumbers="togglePageNumbers" @newTheme="changeTheme" />
+      <Header v-if="this.showHeader" @newProjectCreated="newProjectedCreated" 
+                                    @openFile="openFile" 
+                                    @togglePageNumbers="togglePageNumbers" 
+                                    @newTheme="changeTheme" @nextSlide="nextSlide"
+                                    @duplicate="duplicateSlide" 
+                                    @newSlide="newSlide" />
       <SideMenu id="sideMenu"/>
       <SlideController @changeSlide="updateMarkdown" ref="slideController" :currentMarkdown=markdown />
       <v-container class="editorContainer" fill-height >
@@ -25,11 +30,11 @@
                                 :themeDirectory=themeDirectory
                     /> 
                 </v-flex>
-                <v-flex md1 class="temp">
-                    <v-btn @click="toggle">++</v-btn>
-                     <v-btn @click="getScreenShot">check</v-btn>
+                <v-flex md12 class="temp">
+                    <v-btn @click="toggle">Present</v-btn>
+                     <v-btn @click="getScreenShot">Download</v-btn>
                 </v-flex>
-                <v-flex md10 v-if="this.showSlideList">
+                <v-flex md10 v-if="false"> <!-- "this.showSlideList">-->
                     <SlideList id="slideList" ></SlideList>
                 </v-flex>
             </v-layout>
@@ -55,16 +60,11 @@ import Preview from '../editorViews/Preview'
 import SideMenu from '../newEd/SideMenu'
 import SlideList from '../newEd/SlideList'
 import Toolbar from '../newEd/Toolbar'
-import 'katex/dist/katex.min.css';
+//import 'katex/dist/katex.min.css';
 import jspdf from 'jspdf'
 import html2canvas from 'html2canvas'
 
 import SlideController from '../../Models/slideshow'
-//import slideShowMarkdownFile from "!raw-loader!../../slideshows/firstSlideShow/firstSlidshow.md"
-//import html2canvas from 'html2canvas'
-//import VueHtml2Canvas from 'vue-html2canvas';
-
-//Vue.use(VueHtml2Canvas);
 
 import TitlePage from '../../slideshows/firstSlideShow/firstSlidshow.json'
 
@@ -100,8 +100,19 @@ export default {
         }
     },
     methods: {
-        print(){
-            alert("PRinting")
+        duplicateSlide(){
+            this.$refs.slideController.duplicateSlide();
+        },
+        sleep(milliseconds) {
+            var start = new Date().getTime();
+            for (var i = 0; i < 1e7; i++) {
+                if ((new Date().getTime() - start) > milliseconds){
+                break;
+                }
+            }
+        },
+        async print(){
+           /* alert("PRinting")
             const fileName = "pdfpdf.pdf";
             this.goToFirstSlide();
             this.$refs.slideController.nextSlide(1);
@@ -116,20 +127,23 @@ export default {
             }
             pdf.addPage()
             pdf.text(20, 20, 'Do you like that?')
-            pdf.save(fileName);
-            /*html2canvas(document.querySelector('#preview'),{scale: 2}).then(canvas =>{
+            pdf.save(fileName);*/
+            html2canvas(document.querySelector('#preview'),{scale: 2}).then(canvas =>{
                 let pdf = new jspdf('l','pt','a4');
                 var i =0;
-                for(i=0; i<10; i++){
-                    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 150,-180,450,450);
+                for(i=0; i<this.$refs.slideController.slides.length; i++){
+                    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 150,-80,450,600);
                     pdf.addPage()
                     this.$refs.slideController.nextSlide(1);
                     this.$forceUpdate();
                 }
                 pdf.addPage()
-                pdf.text(20, 20, 'Do you like that?')
-                pdf.save(fileName);
-            });*/
+               // pdf.text(20, 20, 'Do you like that?')
+                pdf.save("firstslideSho");
+            });
+        },
+        nextSlide(){
+            this.$refs.slideController.nextSlide(1);
         },
         hideHeader(){
             this.showHeader = !this.showHeader;
@@ -174,11 +188,8 @@ export default {
         openFile(){
             alert("opening...")
         },
-        newProjectedCreated(){
-            /*const reader = new FileReader();
-            const projectfile = () => import('!raw-loader!../../slideshows/'+event+"/"+event+".json");
-            const file = "../../slideshows/"+event+"/"+event+".md"
-            reader.readAsText(projectfile, "UTF-8");*/
+        newProjectedCreated(event){
+            this.$refs.slideController.changeSlideShow(event);
         },
         getFirstSlide(){
             this.markdown =""// tempMarkdown
@@ -269,6 +280,7 @@ export default {
     background-color: whitesmoke;
 }
 .temp{
-    margin-top: 4.12%
+    margin-top: 4.12%;
+    z-index: 99;
 }
 </style>

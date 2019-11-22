@@ -36,9 +36,8 @@
 import fullscreen from 'vue-fullscreen' ;//to make app fullscreen
 import Vue from 'vue';
 import VueKatex from 'vue-katex';
-import 'katex/dist/katex.min.css';
+//import 'katex/dist/katex.min.css';
 import webcam from '../../plugins/webcam';
-import theme1 from '!raw-loader!../../assets/testTheme.css';
 import axios from 'axios';
 
 Vue.use(fullscreen)
@@ -107,8 +106,8 @@ export default {
             this.$refs.secretText.focus();
         },
       toggleTheme(){
-        if(this.theme==null) this.theme=theme1;
-        else this.theme=null;
+       // if(this.theme==null) this.theme=theme1;
+       // else this.theme=null;
       },
         overlay(/*event*/){
           this.showOverlay = !this.showOverlay;
@@ -140,14 +139,11 @@ export default {
         this.mrkdwn = mrk
         this.$emit("changeMarkdown", mrk);
       },
-      setTheme(){
-          this.theme= null;
+      async setTheme(){
           if ('Stellenbosch' === this.themeDirectory)
-            this.theme = import('../../Themes/Stellenbosch.css');
+            this.theme = await import('../../Themes/Stellenbosch.css');
           else if (this.themeDirectory === 'DarkTheme')
-            this.theme = import('../../Themes/DarkTheme.css');
-          else if (this.themeDirectory === "PurpleTheme.css")
-            this.theme = import('../../Themes/PurpleTheme.css');
+            this.theme = await import('../../Themes/DarkTheme.css');
       },
       getContentHeight(){
         return this.$refs.infoBox.clientHeight;

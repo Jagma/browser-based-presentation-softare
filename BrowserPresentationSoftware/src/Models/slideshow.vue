@@ -23,6 +23,9 @@ Vue.use(VueKatex)
 
 
 export default {
+    components:{
+        //slid: () => import('!raw-loader!../slideshows/firstSlideShow/firstSlidshow.md')
+    },
     props: {
         firstSlide: {default:1},
         startStep: {default:1},//Step on which the slideshow starts
@@ -51,12 +54,16 @@ export default {
             temp: "hello",
             fileDetails: details,
             fileString: "",
+           // slid: null,
         }
     },
     computed: {
         computedActive: function() {
             return this.slides.some(function(slide){return slide.active})
-        }
+        },
+        changeSlideShow(){
+            return () => import('!raw-loader!../slideshows/firstSlideShow/firstSlidshow.md')
+        },
     },
     mounted() {
         //Lists all the slides
@@ -69,6 +76,8 @@ export default {
         }
     },
     created(){
+       // this.slid =  this.changeSlideShow();
+
         this.slides = this.slideShowMarkdown.split('---');
         this.slides.unshift('');
         /*need to update the nec data values*/

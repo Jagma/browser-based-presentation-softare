@@ -112,19 +112,12 @@ export default {
             { option: 'New' },
             { option: 'Open' },
             { option: 'Make a copy' },
-            { option: 'Share' },
             { option: 'Rename' },
             { option: 'Print' },
-            { option: 'Delete presentation' },
             { option: 'Presentation details' },
         ],
         editItems: [
-            { option: 'Cut' },
-            { option: 'Copy' },
-            { option: 'Paste' },
-            { option: 'Delete' },
             { option: 'Select All' },
-            { option: 'Find and Replace' },
         ],
         viewItems: [
             { option: 'Present' },
@@ -133,16 +126,13 @@ export default {
         insertItems: [
             { option: 'Image' },
             { option: 'Web view' },
-            { option: 'Table' },
             { option: 'New slide' },
             { option: 'Toggle Page Numbers' },
         ],
         slideItems: [
             { option: 'New slide' },
             { option: 'Duplicate slide' },
-            { option: 'Delete slide' },
             { option: 'Skip slide' },
-            { option: 'Change transition' },
         ],
         info: "1",
         snackbar:false,
@@ -192,6 +182,15 @@ export default {
                 case "Change Theme":
                     this.changeTheme();
                     break;
+                case "New slide":
+                    this.newSlide();
+                    break;
+                case "Skip slide":
+                    this.skipSlide();
+                    break;
+                case "Duplicate slide":
+                    this.duplicateSlide();
+                    break;
                 default:
                     window.alert(link.option)
           }
@@ -213,6 +212,15 @@ export default {
       },
       getScreenshot(){
       },
+      skipSlide(){
+          this.$emit("nextSlide");
+      },
+      duplicateSlide(){
+          this.$emit("duplicate");
+      },
+      newSlide(){
+          this.$emit("newSlide");
+      }
   },
 }
 </script>
@@ -223,6 +231,7 @@ header{
     justify-content: left;
     justify-items: left;
     justify-self: left;
+    z-index: 10000;
 }
 .t{
     padding-right: 53%

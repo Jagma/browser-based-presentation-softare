@@ -3,19 +3,19 @@
       <header>
           <v-layout row justify-center id="toolbar">
                 <v-flex xs12 md2>
-                  <v-btn class="toolbarButton" @click="bold"><v-icon>format_bold</v-icon></v-btn>
+                  <v-btn id="boldButton" class="toolbarButton" @click="bold"><v-icon>format_bold</v-icon></v-btn>
                 </v-flex>
                 <v-flex xs12 md2>
-                  <v-btn @click="italic"><v-icon>format_italic</v-icon></v-btn>
+                  <v-btn id="italicButton" @click="italic"><v-icon>format_italic</v-icon></v-btn>
                 </v-flex>
                 <v-flex xs12 md2>
-                  <v-btn @click="strike"><v-icon>strikethrough_s</v-icon></v-btn>
+                  <v-btn id="strikeButton" @click="strike"><v-icon>strikethrough_s</v-icon></v-btn>
                 </v-flex>
                 <v-flex xs12 md2>
-                  <v-btn @click="newSlide"><v-icon>fiber_new</v-icon></v-btn>
+                  <v-btn id="nSlideButton" @click="newSlide"><v-icon>fiber_new</v-icon></v-btn>
                 </v-flex>
                 <v-flex xs12 md2>
-                  <v-btn @click="clearAll"><v-icon>clear_all</v-icon></v-btn>
+                  <v-btn id="clearAllbutton" @click="clearAll"><v-icon>clear_all</v-icon></v-btn>
                 </v-flex>
           </v-layout>
       </header>
