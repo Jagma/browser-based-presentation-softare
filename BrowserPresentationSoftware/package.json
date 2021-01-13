@@ -15,7 +15,7 @@
     "@okta/jwt-verifier": "^1.0.0",
     "@vue/test-utils": "^1.0.0-beta.29",
     "FileReader": "^0.10.2",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "cache-loader": "^4.1.0",
     "core-js": "^2.6.5",
     "cors": "^2.8.4",
