@@ -311,7 +311,7 @@
 .justPrev h1 {
     font-size: var(--full-font-size)!important;
     color: black;
-    margin-top: 0vh;
+    margin-top: 2vh;
     float: left;
     margin-left: 3vw;
 }
@@ -319,7 +319,7 @@
 .justPrev h2 {
     font-size: var(--full-font-size)!important;
     color: black;
-    margin-top: 4vh;
+    margin-top: 2vh;
     vertical-align: middle;
     float: left;
     margin-left: 0vw;
